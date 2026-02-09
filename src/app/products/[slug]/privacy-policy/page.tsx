@@ -119,6 +119,37 @@ export default function PrivacyPolicyPage({ params }: Props) {
               </>
             )}
 
+            {product.slug === 'zeroadsblocker' && (
+              <>
+                <h2>Browser Permissions</h2>
+                <p>
+                  ZeroAds requires certain browser permissions to block ads effectively. Each permission is used 
+                  solely for ad blocking and privacy protection:
+                </p>
+                <ul>
+                  <li><strong>Web Request / Declarative Net Request:</strong> Required to intercept and block ad-related 
+                  network requests before they load. This is the core mechanism that prevents ads from appearing on web pages.</li>
+                  <li><strong>Host Permissions (All URLs):</strong> Necessary so the extension can block ads on every 
+                  website you visit, including YouTube, news sites, and social media platforms.</li>
+                  <li><strong>Storage:</strong> Used to save your preferences and whitelist settings locally on your device.</li>
+                </ul>
+
+                <h2>Ad Blocking &amp; Content Filtering</h2>
+                <p>
+                  ZeroAds uses filter rules to identify and block unwanted content. Here&apos;s how it works:
+                </p>
+                <ul>
+                  <li><strong>Local Filter Processing:</strong> All ad detection and blocking happens locally in your 
+                  browser. No browsing data is sent to any server for analysis.</li>
+                  <li><strong>No Page Content Reading:</strong> ZeroAds only inspects network request URLs to determine 
+                  if they match known ad/tracking patterns. It does not read, analyze, or store the actual content of 
+                  web pages you visit.</li>
+                  <li><strong>No Browsing Profiles:</strong> We do not build browsing profiles, track your interests, 
+                  or monitor which websites you visit.</li>
+                </ul>
+              </>
+            )}
+
             <h2>How We Use Information</h2>
             <p>
               Since we don&apos;t collect personal information, there&apos;s no personal data to use. The {product.category === 'android-app' ? 'app' : 'extension'} 
@@ -138,19 +169,26 @@ export default function PrivacyPolicyPage({ params }: Props) {
                 <li><strong>User Preferences:</strong> UI settings and audio profile configurations.</li>
               </ul>
             )}
+            {product.slug === 'zeroadsblocker' && (
+              <ul>
+                <li><strong>Whitelist:</strong> Websites you choose to allow ads on.</li>
+                <li><strong>Filter Preferences:</strong> Your selected blocking intensity and categories.</li>
+                <li><strong>UI Settings:</strong> Extension interface preferences and display options.</li>
+              </ul>
+            )}
 
             <h2>Third-Party Services</h2>
             <p>
-              {product.slug === 'pulser-pro' 
-                ? 'Pulser Pro does not connect to any external servers or third-party services. All functionality is self-contained within the extension and runs entirely in your browser.'
+              {(product.slug === 'pulser-pro' || product.slug === 'zeroadsblocker')
+                ? `${product.name} does not connect to any external servers or third-party services. All functionality is self-contained within the extension and runs entirely in your browser.`
                 : `${product.name} may connect to external services as part of its core functionality. These connections are necessary for the product to work and are encrypted for security.`
               }
             </p>
 
             <h2>Data Security</h2>
             <p>
-              We take security seriously. {product.slug === 'pulser-pro' 
-                ? 'Since Pulser Pro operates entirely offline with no network communication, there is no risk of data interception. Your preferences are stored securely in your browser\'s local storage.'
+              We take security seriously. {(product.slug === 'pulser-pro' || product.slug === 'zeroadsblocker')
+                ? `Since ${product.name} operates entirely offline with no network communication, there is no risk of data interception. Your preferences are stored securely in your browser's local storage.`
                 : 'All network communications are encrypted using industry-standard protocols. Your local data is protected by your device\'s security measures.'
               }
             </p>

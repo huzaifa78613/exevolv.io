@@ -227,6 +227,57 @@ export const products: Product[] = [
     developer: 'exevolv.io',
     privacyPolicyUrl: '/products/pulser-pro/privacy-policy',
     supportUrl: '/products/pulser-pro/documentation'
+  },
+  {
+    id: 'zeroadsblocker',
+    name: 'ZeroAds',
+    slug: 'zeroadsblocker',
+    tagline: 'Block All Ads, Instantly',
+    description: 'ZeroAds is a lightweight and powerful ad blocker designed to give you a cleaner, faster, and more private browsing experience. It blocks video ads on YouTube and streaming platforms, display and banner ads, pop-ups, overlay notifications, and tracking scripts that monitor your online activity — all with zero configuration needed.',
+    category: 'chrome-extension',
+    icon: '/images/products/zeroadsblocker-icon.svg',
+    screenshots: ['/images/products/zeroadsblocker-1.png', '/images/products/zeroadsblocker-2.png'],
+    features: [
+      {
+        title: 'Block All Ads',
+        description: 'Automatically blocks video ads, display ads, banners, and pop-ups across all websites.',
+        icon: 'ShieldOff'
+      },
+      {
+        title: 'YouTube Ad Blocker',
+        description: 'Removes video advertisements on YouTube and other streaming platforms seamlessly.',
+        icon: 'MonitorPlay'
+      },
+      {
+        title: 'Anti-Tracking',
+        description: 'Blocks tracking scripts and third-party advertising networks that monitor your activity.',
+        icon: 'EyeOff'
+      },
+      {
+        title: 'Faster Browsing',
+        description: 'Pages load faster by eliminating ads and reducing unnecessary data usage.',
+        icon: 'Zap'
+      },
+      {
+        title: 'Lightweight',
+        description: 'Ultra-lightweight at just 63KB — runs efficiently without slowing down your browser.',
+        icon: 'Feather'
+      },
+      {
+        title: 'Zero Configuration',
+        description: 'Works out of the box with no setup required. Install and start browsing ad-free instantly.',
+        icon: 'CheckCircle'
+      }
+    ],
+    storeUrl: 'https://chromewebstore.google.com/detail/zeroads-block-all-ads-ins/akghmpladinkabkggdhapldcfegedoci',
+    storeId: 'akghmpladinkabkggdhapldcfegedoci',
+    rating: 0,
+    users: '1+',
+    version: '1.0.5',
+    lastUpdated: 'February 8, 2026',
+    developer: 'exevolv.io',
+    privacyPolicyUrl: '/products/zeroadsblocker/privacy-policy',
+    supportUrl: '/products/zeroadsblocker/documentation'
   }
 ]
 
