@@ -10,6 +10,14 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'play-lh.googleusercontent.com',
       },
+      {
+        protocol: 'https',
+        hostname: 'i.ytimg.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'noembed.com',
+      },
     ],
   },
   eslint: {

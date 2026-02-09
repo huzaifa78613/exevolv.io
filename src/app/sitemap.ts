@@ -19,6 +19,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: '/terms-of-service', changeFrequency: 'monthly', priority: 0.5 },
     { path: '/cookie-policy', changeFrequency: 'monthly', priority: 0.5 },
     { path: '/refund-policy', changeFrequency: 'monthly', priority: 0.5 },
+    { path: '/youtube-downloader', changeFrequency: 'weekly', priority: 0.9 },
   ]
 
   const staticUrls: MetadataRoute.Sitemap = staticPages.map((page) => ({
