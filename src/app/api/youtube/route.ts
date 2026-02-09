@@ -1,29 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
+import ytdl from '@distube/ytdl-core'
 
-// YouTube Data API - using oEmbed + noembed for basic info (no API key needed)
-// For a production app, you'd use the YouTube Data API v3 with an API key
-
-interface VideoFormat {
-  itag: number
-  quality: string
-  mimeType: string
-  qualityLabel: string
-  bitrate: number
-  audioQuality?: string
-  hasAudio: boolean
-  hasVideo: boolean
-  container: string
-  size?: string
-}
-
-interface VideoInfo {
-  title: string
-  thumbnail: string
-  duration: string
-  channel: string
-  viewCount: string
-  formats: VideoFormat[]
-}
+export const dynamic = 'force-dynamic'
 
 function formatDuration(seconds: number): string {
   const hrs = Math.floor(seconds / 3600)
@@ -35,6 +13,14 @@ function formatDuration(seconds: number): string {
   return `${mins}:${secs.toString().padStart(2, '0')}`
 }
 
+function formatBytes(bytes: number): string {
+  if (bytes === 0) return '0 B'
+  const k = 1024
+  const sizes = ['B', 'KB', 'MB', 'GB']
+  const i = Math.floor(Math.log(bytes) / Math.log(k))
+  return parseFloat((bytes / Math.pow(k, i)).toFixed(1)) + ' ' + sizes[i]
+}
+
 export async function GET(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams
   const videoId = searchParams.get('videoId')
@@ -43,117 +29,77 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ error: 'Video ID is required' }, { status: 400 })
   }
 
-  // Validate video ID format
   if (!/^[\w-]{11}$/.test(videoId)) {
     return NextResponse.json({ error: 'Invalid video ID format' }, { status: 400 })
   }
 
   try {
-    // Fetch video info from noembed (free, no API key needed)
-    const oembedResponse = await fetch(
-      `https://noembed.com/embed?url=https://www.youtube.com/watch?v=${videoId}`,
-      { next: { revalidate: 3600 } }
-    )
+    const url = `https://www.youtube.com/watch?v=${videoId}`
+    const info = await ytdl.getInfo(url)
+    const details = info.videoDetails
 
-    if (!oembedResponse.ok) {
-      throw new Error('Failed to fetch video info')
-    }
+    // Get video formats (with both audio & video)
+    const videoFormats = ytdl.filterFormats(info.formats, 'videoandaudio')
+      .filter(f => f.container === 'mp4' || f.container === 'webm')
+      .sort((a, b) => (b.height || 0) - (a.height || 0))
+      .filter((f, i, arr) => arr.findIndex(x => x.qualityLabel === f.qualityLabel) === i)
+      .slice(0, 6)
+      .map(f => ({
+        itag: f.itag,
+        quality: f.quality || '',
+        mimeType: f.mimeType || '',
+        qualityLabel: f.qualityLabel || `${f.height}p`,
+        bitrate: f.bitrate || 0,
+        hasAudio: f.hasAudio,
+        hasVideo: f.hasVideo,
+        container: f.container || 'mp4',
+        size: f.contentLength ? formatBytes(parseInt(f.contentLength)) : 'Unknown',
+      }))
 
-    const oembedData = await oembedResponse.json()
-
-    if (oembedData.error) {
-      return NextResponse.json({ error: 'Video not found or is private' }, { status: 404 })
-    }
-
-    // Build available formats list (standard YouTube formats)
-    const videoFormats: VideoFormat[] = [
-      {
-        itag: 137,
-        quality: 'hd1080',
-        mimeType: 'video/mp4',
-        qualityLabel: '1080p',
-        bitrate: 4000000,
-        hasAudio: true,
-        hasVideo: true,
-        container: 'mp4',
-        size: '~150-500 MB',
-      },
-      {
-        itag: 136,
-        quality: 'hd720',
-        mimeType: 'video/mp4',
-        qualityLabel: '720p',
-        bitrate: 2500000,
-        hasAudio: true,
-        hasVideo: true,
-        container: 'mp4',
-        size: '~80-250 MB',
-      },
-      {
-        itag: 135,
-        quality: 'large',
-        mimeType: 'video/mp4',
-        qualityLabel: '480p',
-        bitrate: 1000000,
-        hasAudio: true,
-        hasVideo: true,
-        container: 'mp4',
-        size: '~40-120 MB',
-      },
-      {
-        itag: 134,
-        quality: 'medium',
-        mimeType: 'video/mp4',
-        qualityLabel: '360p',
-        bitrate: 600000,
-        hasAudio: true,
-        hasVideo: true,
-        container: 'mp4',
-        size: '~20-60 MB',
-      },
-    ]
-
-    const audioFormats: VideoFormat[] = [
-      {
-        itag: 140,
-        quality: 'high',
-        mimeType: 'audio/mp4',
-        qualityLabel: 'MP3 - 128kbps',
-        bitrate: 128000,
-        audioQuality: 'AUDIO_QUALITY_MEDIUM',
+    // Get audio-only formats
+    const audioFormats = ytdl.filterFormats(info.formats, 'audioonly')
+      .sort((a, b) => (b.audioBitrate || 0) - (a.audioBitrate || 0))
+      .filter((f, i, arr) => arr.findIndex(x => x.audioBitrate === f.audioBitrate) === i)
+      .slice(0, 4)
+      .map(f => ({
+        itag: f.itag,
+        quality: f.audioQuality || '',
+        mimeType: f.mimeType || '',
+        qualityLabel: `${f.audioBitrate || 0}kbps ${f.container === 'webm' ? 'Opus' : 'AAC'}`,
+        bitrate: f.bitrate || 0,
+        audioQuality: f.audioQuality || '',
         hasAudio: true,
         hasVideo: false,
-        container: 'mp3',
-        size: '~3-10 MB',
-      },
-      {
-        itag: 251,
-        quality: 'high',
-        mimeType: 'audio/webm',
-        qualityLabel: 'WebM Audio - 160kbps',
-        bitrate: 160000,
-        audioQuality: 'AUDIO_QUALITY_HIGH',
-        hasAudio: true,
-        hasVideo: false,
-        container: 'webm',
-        size: '~4-12 MB',
-      },
-    ]
+        container: f.container || 'mp4',
+        size: f.contentLength ? formatBytes(parseInt(f.contentLength)) : 'Unknown',
+      }))
 
-    const videoInfo: VideoInfo = {
-      title: oembedData.title || 'Unknown Title',
-      thumbnail: oembedData.thumbnail_url || `https://i.ytimg.com/vi/${videoId}/maxresdefault.jpg`,
-      duration: 'N/A',
-      channel: oembedData.author_name || 'Unknown Channel',
-      viewCount: 'N/A',
+    const durationSec = parseInt(details.lengthSeconds) || 0
+
+    const videoInfo = {
+      title: details.title || 'Unknown Title',
+      thumbnail: details.thumbnails?.[details.thumbnails.length - 1]?.url
+        || `https://i.ytimg.com/vi/${videoId}/maxresdefault.jpg`,
+      duration: formatDuration(durationSec),
+      channel: details.author?.name || details.ownerChannelName || 'Unknown',
+      viewCount: parseInt(details.viewCount || '0').toLocaleString() + ' views',
       formats: [...videoFormats, ...audioFormats],
     }
 
     return NextResponse.json(videoInfo)
-  } catch (error) {
+  } catch (error: unknown) {
     console.error('YouTube API Error:', error)
+    const message = error instanceof Error ? error.message : 'Unknown error'
+
+    if (message.includes('private') || message.includes('unavailable')) {
+      return NextResponse.json(
+        { error: 'This video is private or unavailable.' },
+        { status: 404 }
+      )
+    }
+
     return NextResponse.json(
-      { error: 'Failed to fetch video information. Please try again.' },
+      { error: 'Failed to fetch video information. Please check the URL and try again.' },
       { status: 500 }
     )
   }
