@@ -45,6 +45,7 @@ interface VideoFormat {
   hasVideo: boolean
   container: string
   size?: string
+  url?: string
 }
 
 interface VideoInfo {
@@ -252,21 +253,24 @@ export default function YouTubeDownloaderPage() {
   const handleDownload = useCallback(async () => {
     if (!videoInfo || !selectedQuality) return
 
-    const videoId = extractVideoId(url)
-    if (!videoId) return
-
     setDownloading(true)
     setDownloadSuccess(false)
 
     try {
-      const downloadUrl = `/api/youtube/download?videoId=${videoId}&itag=${selectedQuality}&format=${selectedFormat}`
+      // Find the selected format and use its direct URL
+      const allFormats = [...(videoInfo.formats || [])]
+      const format = allFormats.find(f => f.itag.toString() === selectedQuality)
       
-      const link = document.createElement('a')
-      link.href = downloadUrl
-      link.setAttribute('download', '')
-      document.body.appendChild(link)
-      link.click()
-      document.body.removeChild(link)
+      if (format?.url) {
+        // Direct download from YouTube CDN
+        window.open(format.url, '_blank')
+      } else {
+        // Fallback to API route
+        const videoId = extractVideoId(url)
+        if (!videoId) throw new Error('Invalid URL')
+        const downloadUrl = `/api/youtube/download?videoId=${videoId}&itag=${selectedQuality}&format=${selectedFormat}`
+        window.open(downloadUrl, '_blank')
+      }
       
       setDownloadSuccess(true)
       setTimeout(() => setDownloadSuccess(false), 3000)
