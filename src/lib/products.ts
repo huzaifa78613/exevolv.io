@@ -176,6 +176,57 @@ export const products: Product[] = [
     developer: 'Creative Taleem Technologies',
     privacyPolicyUrl: '/products/taleemspot-notes/privacy-policy',
     supportUrl: '/products/taleemspot-notes/user-guide'
+  },
+  {
+    id: 'pulser-pro',
+    name: 'Pulser Pro',
+    slug: 'pulser-pro',
+    tagline: 'Sound Booster – Boost Volume Up to 600%',
+    description: 'Pulser Pro is a powerful sound booster Chrome extension that amplifies audio up to 600% on any website. Whether you\'re watching YouTube, streaming on Netflix, or attending online meetings, Pulser Pro delivers crystal-clear, ultra-loud sound with a sleek and intuitive interface. Fine-tune volume, bass, and audio profiles per tab — all with zero lag.',
+    category: 'chrome-extension',
+    icon: '/images/products/pulser-pro-icon.svg',
+    screenshots: ['/images/products/pulser-pro-1.png', '/images/products/pulser-pro-2.png'],
+    features: [
+      {
+        title: '600% Volume Boost',
+        description: 'Amplify any browser tab\'s audio up to 6x beyond the default maximum volume.',
+        icon: 'Volume2'
+      },
+      {
+        title: 'Per-Tab Control',
+        description: 'Independently control volume levels for each open tab without affecting others.',
+        icon: 'SlidersHorizontal'
+      },
+      {
+        title: 'Bass Booster',
+        description: 'Built-in bass enhancement to give your audio deeper, richer low-end frequencies.',
+        icon: 'AudioWaveform'
+      },
+      {
+        title: 'Works Everywhere',
+        description: 'Compatible with YouTube, Netflix, Spotify, Google Meet, Zoom, and all websites.',
+        icon: 'Globe'
+      },
+      {
+        title: 'Zero Lag Audio',
+        description: 'Real-time audio processing with no noticeable latency or delay.',
+        icon: 'Zap'
+      },
+      {
+        title: 'Privacy Focused',
+        description: 'No data collection, no tracking. All audio processing happens locally on your device.',
+        icon: 'Shield'
+      }
+    ],
+    storeUrl: 'https://chromewebstore.google.com/detail/pulser-pro',
+    storeId: '',
+    rating: 5.0,
+    users: '10+',
+    version: '1.1.0',
+    lastUpdated: 'February 10, 2026',
+    developer: 'exevolv.io',
+    privacyPolicyUrl: '/products/pulser-pro/privacy-policy',
+    supportUrl: '/products/pulser-pro/documentation'
   }
 ]
 
