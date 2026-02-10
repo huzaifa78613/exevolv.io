@@ -50,23 +50,29 @@ const milestones = [
   { year: '2025', event: 'Launched IP Filter Exchange', description: 'Our first Chrome extension for secure proxy management.' },
   { year: '2025', event: 'Released QuizMaster AI', description: 'AI-powered quiz solving extension for students.' },
   { year: '2025', event: 'TaleemSpot Notes App', description: 'Launched our first Android app for Pakistani students.' },
-  { year: '2026', event: 'Growing Strong', description: 'Serving thousands of users worldwide.' },
+  { year: '2026', event: 'Launched Pulser Pro & ZeroAds', description: 'Sound booster and ad blocker extensions to enhance browsing.' },
+  { year: '2026', event: 'Growing Strong', description: 'Serving thousands of users across 50+ countries worldwide.' },
 ]
 
 export default function AboutPage() {
   return (
     <>
       {/* Hero Section */}
-      <section className="gradient-bg py-16 md:py-24">
-        <div className="container-custom">
+      <section className="relative gradient-bg py-16 md:py-24 overflow-hidden">
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute -top-40 -right-40 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
+          <div className="absolute -bottom-20 -left-20 w-72 h-72 bg-primary/5 rounded-full blur-3xl" />
+        </div>
+        <div className="container-custom relative">
           <Breadcrumbs items={[{ label: 'About' }]} />
           
           <div className="max-w-3xl">
-            <h1 className="text-4xl md:text-5xl font-bold text-dark-900 dark:text-white mb-4">
+            <span className="badge-primary mb-4 inline-block">Our Story</span>
+            <h1 className="text-4xl md:text-5xl font-bold text-dark-900 dark:text-white mb-4 leading-[1.1]">
               About exevolv.io
             </h1>
-            <p className="text-lg text-dark-600 dark:text-dark-400">
-              We're a passionate team dedicated to building innovative browser extensions 
+            <p className="text-lg text-dark-600 dark:text-dark-400 leading-relaxed">
+              We&apos;re a passionate team dedicated to building innovative browser extensions 
               and applications that make the digital world a better place.
             </p>
           </div>
@@ -76,16 +82,16 @@ export default function AboutPage() {
       {/* Mission & Vision */}
       <section className="section-padding bg-white dark:bg-dark-950">
         <div className="container-custom">
-          <div className="grid md:grid-cols-2 gap-12">
+          <div className="grid md:grid-cols-2 gap-8">
             {/* Mission */}
-            <div className="card p-8">
-              <div className="w-14 h-14 bg-primary-50 dark:bg-primary-900/20 rounded-xl flex items-center justify-center mb-6">
+            <div className="card card-hover p-8 border-t-4 border-t-primary">
+              <div className="w-14 h-14 bg-gradient-to-br from-primary-50 to-primary-100 dark:from-primary-900/20 dark:to-primary-800/20 rounded-2xl flex items-center justify-center mb-6">
                 <Target className="w-7 h-7 text-primary" />
               </div>
               <h2 className="text-2xl font-bold text-dark-900 dark:text-white mb-4">
                 Our Mission
               </h2>
-              <p className="text-dark-600 dark:text-dark-400">
+              <p className="text-dark-600 dark:text-dark-400 leading-relaxed">
                 To create powerful, privacy-focused digital tools that enhance productivity 
                 and simplify everyday tasks for users worldwide. We believe technology should 
                 work for you, not against you.
@@ -93,8 +99,8 @@ export default function AboutPage() {
             </div>
 
             {/* Vision */}
-            <div className="card p-8">
-              <div className="w-14 h-14 bg-primary-50 dark:bg-primary-900/20 rounded-xl flex items-center justify-center mb-6">
+            <div className="card card-hover p-8 border-t-4 border-t-primary">
+              <div className="w-14 h-14 bg-gradient-to-br from-primary-50 to-primary-100 dark:from-primary-900/20 dark:to-primary-800/20 rounded-2xl flex items-center justify-center mb-6">
                 <Eye className="w-7 h-7 text-primary" />
               </div>
               <h2 className="text-2xl font-bold text-dark-900 dark:text-white mb-4">
@@ -186,7 +192,7 @@ export default function AboutPage() {
         <div className="container-custom">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             <div>
-              <div className="text-4xl md:text-5xl font-bold text-white mb-2">3+</div>
+              <div className="text-4xl md:text-5xl font-bold text-white mb-2">5+</div>
               <div className="text-white/80">Products</div>
             </div>
             <div>

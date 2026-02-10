@@ -14,6 +14,8 @@ const navigation = [
       { name: 'IP Filter Exchange', href: '/products/ip-filter-exchange' },
       { name: 'QuizMaster AI', href: '/products/quizmaster-ai' },
       { name: 'TaleemSpot Notes', href: '/products/taleemspot-notes' },
+      { name: 'Pulser Pro', href: '/products/pulser-pro' },
+      { name: 'ZeroAds', href: '/products/zeroadsblocker' },
     ]
   },
   { name: 'About', href: '/about' },

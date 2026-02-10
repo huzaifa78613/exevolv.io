@@ -21,7 +21,7 @@ import { products } from '@/lib/products'
 
 const stats = [
   { value: '10K+', label: 'Active Users', icon: <Users className="w-6 h-6" /> },
-  { value: '3+', label: 'Products', icon: <Rocket className="w-6 h-6" /> },
+  { value: '5+', label: 'Products', icon: <Rocket className="w-6 h-6" /> },
   { value: '4.8', label: 'Avg Rating', icon: <Star className="w-6 h-6" /> },
   { value: '50+', label: 'Countries', icon: <Globe className="w-6 h-6" /> },
 ]
@@ -74,18 +74,19 @@ export default function HomePage() {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative overflow-hidden gradient-bg">
+      <section className="relative overflow-hidden gradient-bg min-h-[90vh] flex items-center">
         {/* Background decoration */}
         <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute -top-40 -right-40 w-80 h-80 bg-primary/10 rounded-full blur-3xl" />
-          <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-primary/10 rounded-full blur-3xl" />
+          <div className="absolute -top-40 -right-40 w-96 h-96 bg-primary/10 rounded-full blur-3xl animate-pulse-slow" />
+          <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-primary/10 rounded-full blur-3xl animate-pulse-slow" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/5 rounded-full blur-3xl" />
         </div>
 
-        <div className="container-custom relative">
+        <div className="container-custom relative w-full">
           <div className="py-20 md:py-32 lg:py-40">
             <div className="max-w-4xl mx-auto text-center">
               {/* Badge */}
-              <div className="inline-flex items-center gap-2 px-4 py-2 bg-white dark:bg-dark-900 rounded-full shadow-lg shadow-dark-900/5 mb-8 animate-fade-up">
+              <div className="inline-flex items-center gap-2 px-5 py-2.5 bg-white/80 dark:bg-dark-900/80 backdrop-blur-sm rounded-full shadow-lg shadow-dark-900/5 mb-8 animate-fade-up border border-dark-100 dark:border-dark-800">
                 <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
                 <span className="text-sm font-medium text-dark-600 dark:text-dark-400">
                   Building the future of browser extensions
@@ -93,9 +94,9 @@ export default function HomePage() {
               </div>
 
               {/* Headline */}
-              <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-dark-900 dark:text-white mb-6 animate-fade-up animate-delay-100">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-dark-900 dark:text-white mb-6 animate-fade-up animate-delay-100 leading-[1.1]">
                 Innovative Tools for a
-                <span className="gradient-text block">Better Digital Experience</span>
+                <span className="gradient-text block mt-2">Better Digital Experience</span>
               </h1>
 
               {/* Subheadline */}
@@ -257,11 +258,13 @@ export default function HomePage() {
       </section>
 
       {/* CTA Section */}
-      <section className="section-padding bg-primary relative overflow-hidden">
+      <section className="section-padding bg-gradient-to-br from-primary via-primary-600 to-primary-800 relative overflow-hidden">
         {/* Background decoration */}
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute top-0 right-0 w-96 h-96 bg-white/10 rounded-full blur-3xl" />
           <div className="absolute bottom-0 left-0 w-96 h-96 bg-white/10 rounded-full blur-3xl" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] border border-white/10 rounded-full" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] border border-white/5 rounded-full" />
         </div>
 
         <div className="container-custom relative">

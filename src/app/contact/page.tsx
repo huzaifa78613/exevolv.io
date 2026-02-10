@@ -40,12 +40,16 @@ export default function ContactPage() {
   return (
     <>
       {/* Hero Section */}
-      <section className="gradient-bg py-16 md:py-24">
-        <div className="container-custom">
+      <section className="relative gradient-bg py-16 md:py-24 overflow-hidden">
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute -top-40 -right-40 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
+        </div>
+        <div className="container-custom relative">
           <Breadcrumbs items={[{ label: 'Contact' }]} />
           
           <div className="max-w-3xl">
-            <h1 className="text-4xl md:text-5xl font-bold text-dark-900 dark:text-white mb-4">
+            <span className="badge-primary mb-4 inline-block">Reach Out</span>
+            <h1 className="text-4xl md:text-5xl font-bold text-dark-900 dark:text-white mb-4 leading-[1.1]">
               Get in Touch
             </h1>
             <p className="text-lg text-dark-600 dark:text-dark-400">
@@ -199,6 +203,8 @@ export default function ContactPage() {
                       <option value="ip-filter-exchange">IP Filter Exchange</option>
                       <option value="quizmaster-ai">QuizMaster AI</option>
                       <option value="taleemspot-notes">TaleemSpot Notes</option>
+                      <option value="pulser-pro">Pulser Pro</option>
+                      <option value="zeroadsblocker">ZeroAds</option>
                     </select>
                   </div>
 

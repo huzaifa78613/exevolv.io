@@ -20,19 +20,19 @@
 
 @layer components {
   .btn-primary {
-    @apply inline-flex items-center justify-center px-6 py-3 text-base font-semibold text-white bg-primary rounded-lg 
-           hover:bg-primary-600 transition-all duration-200 shadow-lg shadow-primary/25 
-           hover:shadow-xl hover:shadow-primary/30 hover:-translate-y-0.5;
+    @apply inline-flex items-center justify-center px-6 py-3 text-base font-semibold text-white bg-primary rounded-xl 
+           hover:bg-primary-600 transition-all duration-300 shadow-lg shadow-primary/25 
+           hover:shadow-xl hover:shadow-primary/30 hover:-translate-y-0.5 active:translate-y-0;
   }
   
   .btn-secondary {
     @apply inline-flex items-center justify-center px-6 py-3 text-base font-semibold text-primary bg-white 
-           border-2 border-primary rounded-lg hover:bg-primary-50 transition-all duration-200;
+           border-2 border-primary rounded-xl hover:bg-primary-50 transition-all duration-300;
   }
   
   .btn-outline {
     @apply inline-flex items-center justify-center px-6 py-3 text-base font-semibold text-dark-700 
-           border-2 border-dark-300 rounded-lg hover:border-primary hover:text-primary transition-all duration-200;
+           border-2 border-dark-200 rounded-xl hover:border-primary hover:text-primary transition-all duration-300;
   }
   
   .card {
@@ -41,7 +41,7 @@
   }
   
   .card-hover {
-    @apply hover:-translate-y-1 hover:border-primary/20;
+    @apply hover:-translate-y-1.5 hover:border-primary/30 hover:shadow-primary/5;
   }
   
   .section-padding {
@@ -53,7 +53,7 @@
   }
   
   .gradient-text {
-    @apply bg-gradient-to-r from-primary to-primary-400 bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-primary via-primary-400 to-primary-600 bg-clip-text text-transparent;
   }
   
   .gradient-bg {
@@ -65,7 +65,7 @@
   }
   
   .input-field {
-    @apply w-full px-4 py-3 text-dark-900 bg-white border border-dark-200 rounded-lg
+    @apply w-full px-4 py-3 text-dark-900 bg-white border border-dark-200 rounded-xl
            focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary
            transition-all duration-200 placeholder:text-dark-400;
   }
@@ -84,6 +84,20 @@
   
   .badge-android {
     @apply badge bg-green-50 text-green-700;
+  }
+
+  /* Article prose enhancements */
+  .article-content h2 {
+    @apply relative pl-4 border-l-4 border-primary;
+  }
+
+  .article-content blockquote {
+    @apply relative;
+  }
+
+  .article-content blockquote::before {
+    content: '\201C';
+    @apply absolute -top-4 -left-2 text-6xl text-primary/20 font-serif leading-none;
   }
 }
 
@@ -107,6 +121,10 @@
   .animate-delay-400 {
     animation-delay: 400ms;
   }
+
+  .animate-delay-500 {
+    animation-delay: 500ms;
+  }
 }
 
 /* Dark Mode */
@@ -122,16 +140,25 @@
   .input-field {
     @apply bg-dark-900 border-dark-700 text-dark-100 placeholder:text-dark-500;
   }
+
+  .gradient-bg {
+    background: linear-gradient(135deg, #121212 0%, #1B5E20 50%, #121212 100%);
+    background-size: 200% 200%;
+  }
+
+  .badge-primary {
+    @apply bg-primary-900/40 text-primary-300;
+  }
 }
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  @apply bg-dark-100;
+  @apply bg-transparent;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -145,4 +172,14 @@
 /* Selection */
 ::selection {
   @apply bg-primary/20 text-primary-800;
+}
+
+/* Smooth page transitions */
+main {
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* Reading progress bar */
+.reading-progress {
+  @apply fixed top-0 left-0 h-0.5 bg-primary z-[60] transition-all duration-100;
 }

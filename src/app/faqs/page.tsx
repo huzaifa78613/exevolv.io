@@ -95,6 +95,50 @@ const faqCategories = [
       },
     ]
   },
+  {
+    id: 'pulser-pro',
+    name: 'Pulser Pro',
+    faqs: [
+      {
+        question: 'What is Pulser Pro?',
+        answer: 'Pulser Pro is a Chrome extension that boosts audio volume up to 600% on any website. It works with YouTube, Netflix, Spotify, Google Meet, Zoom, and all other websites.'
+      },
+      {
+        question: 'Does Pulser Pro affect audio quality?',
+        answer: 'Pulser Pro uses real-time audio processing with zero latency. It amplifies audio cleanly without distortion at moderate boost levels. At very high boost levels, some clipping may occur depending on the source audio quality.'
+      },
+      {
+        question: 'Can I control volume per tab?',
+        answer: 'Yes! Pulser Pro allows you to independently control volume levels for each open tab. This means you can boost a lecture video while keeping other tabs at normal volume.'
+      },
+      {
+        question: 'Does Pulser Pro collect any data?',
+        answer: 'No. All audio processing happens locally on your device. Pulser Pro does not collect, transmit, or store any data whatsoever.'
+      },
+    ]
+  },
+  {
+    id: 'zeroadsblocker',
+    name: 'ZeroAds',
+    faqs: [
+      {
+        question: 'What is ZeroAds?',
+        answer: 'ZeroAds is a lightweight ad blocker Chrome extension that blocks video ads, display ads, pop-ups, tracking scripts, and overlay notifications across all websites — with zero configuration needed.'
+      },
+      {
+        question: 'How is ZeroAds different from other ad blockers?',
+        answer: 'ZeroAds is ultra-lightweight at just 63KB, making it one of the smallest ad blockers available. Despite its small size, it effectively blocks ads across all websites including YouTube, without slowing down your browser.'
+      },
+      {
+        question: 'Will ZeroAds break any websites?',
+        answer: 'ZeroAds is designed to block ads without breaking website functionality. In rare cases, some sites may detect ad blocking and ask you to disable it. You can whitelist specific sites if needed.'
+      },
+      {
+        question: 'Does ZeroAds block YouTube ads?',
+        answer: 'Yes, ZeroAds blocks video advertisements on YouTube and other streaming platforms, giving you an uninterrupted viewing experience.'
+      },
+    ]
+  },
 ]
 
 function FAQItem({ question, answer }: { question: string; answer: string }) {
@@ -141,15 +185,19 @@ export default function FAQsPage() {
   return (
     <>
       {/* Hero Section */}
-      <section className="gradient-bg py-16 md:py-24">
-        <div className="container-custom">
+      <section className="relative gradient-bg py-16 md:py-24 overflow-hidden">
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute -top-40 -right-40 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
+        </div>
+        <div className="container-custom relative">
           <Breadcrumbs items={[{ label: 'FAQs' }]} />
           
           <div className="max-w-3xl">
-            <h1 className="text-4xl md:text-5xl font-bold text-dark-900 dark:text-white mb-4">
+            <span className="badge-primary mb-4 inline-block">Help Center</span>
+            <h1 className="text-4xl md:text-5xl font-bold text-dark-900 dark:text-white mb-4 leading-[1.1]">
               Frequently Asked Questions
             </h1>
-            <p className="text-lg text-dark-600 dark:text-dark-400 mb-8">
+            <p className="text-lg text-dark-600 dark:text-dark-400 mb-8 leading-relaxed">
               Find answers to common questions about our products and services.
             </p>
             
@@ -161,7 +209,7 @@ export default function FAQsPage() {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search FAQs..."
-                className="w-full pl-12 pr-4 py-4 bg-white dark:bg-dark-900 border border-dark-200 dark:border-dark-700 rounded-xl text-dark-900 dark:text-white placeholder:text-dark-400 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary shadow-lg"
+                className="w-full pl-12 pr-4 py-4 bg-white/80 dark:bg-dark-900/80 backdrop-blur-sm border border-dark-200 dark:border-dark-700 rounded-xl text-dark-900 dark:text-white placeholder:text-dark-400 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary shadow-lg"
               />
             </div>
           </div>

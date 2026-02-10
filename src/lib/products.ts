@@ -175,7 +175,7 @@ export const products: Product[] = [
     lastUpdated: 'December 7, 2025',
     developer: 'Creative Taleem Technologies',
     privacyPolicyUrl: '/products/taleemspot-notes/privacy-policy',
-    supportUrl: '/products/taleemspot-notes/user-guide'
+    supportUrl: '/products/taleemspot-notes/documentation'
   },
   {
     id: 'pulser-pro',

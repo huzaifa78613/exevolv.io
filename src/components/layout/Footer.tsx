@@ -1,17 +1,18 @@
 import Link from 'next/link'
-import { Twitter, Github, Linkedin, Mail, MapPin, Phone } from 'lucide-react'
+import { Github, Linkedin, Mail } from 'lucide-react'
 
 const footerLinks = {
   products: [
     { name: 'IP Filter Exchange', href: '/products/ip-filter-exchange' },
     { name: 'QuizMaster AI', href: '/products/quizmaster-ai' },
     { name: 'TaleemSpot Notes', href: '/products/taleemspot-notes' },
+    { name: 'Pulser Pro', href: '/products/pulser-pro' },
+    { name: 'ZeroAds', href: '/products/zeroadsblocker' },
   ],
   company: [
     { name: 'About Us', href: '/about' },
     { name: 'Blog', href: '/blog' },
     { name: 'Contact', href: '/contact' },
-    { name: 'Careers', href: '/careers' },
   ],
   resources: [
     { name: 'Documentation', href: '/docs' },
@@ -28,9 +29,9 @@ const footerLinks = {
 }
 
 const socialLinks = [
-  { name: 'Twitter', icon: Twitter, href: 'https://twitter.com/exevolv_io' },
-  { name: 'GitHub', icon: Github, href: 'https://github.com/exevolv-io' },
+  { name: 'GitHub', icon: Github, href: 'https://github.com/huzaifa78613' },
   { name: 'LinkedIn', icon: Linkedin, href: 'https://linkedin.com/company/exevolv-io' },
+  { name: 'Email', icon: Mail, href: 'mailto:hello@exevolv.io' },
 ]
 
 export default function Footer() {
@@ -44,18 +45,17 @@ export default function Footer() {
               Stay Updated
             </h3>
             <p className="text-dark-400 mb-6">
-              Subscribe to our newsletter for product updates, tips, and exclusive content.
+              Get product updates, tips, and exclusive content delivered to your inbox.
             </p>
-            <form className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
-              <input
-                type="email"
-                placeholder="Enter your email"
-                className="flex-1 px-4 py-3 bg-dark-800 border border-dark-700 rounded-lg text-white placeholder:text-dark-500 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary"
-              />
-              <button type="submit" className="btn-primary whitespace-nowrap">
-                Subscribe
-              </button>
-            </form>
+            <div className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto items-center justify-center">
+              <a 
+                href="mailto:hello@exevolv.io?subject=Newsletter Subscription&body=I would like to subscribe to the exevolv.io newsletter."
+                className="btn-primary whitespace-nowrap"
+              >
+                <Mail className="w-4 h-4 mr-2" />
+                Subscribe via Email
+              </a>
+            </div>
           </div>
         </div>
       </div>
@@ -156,10 +156,6 @@ export default function Footer() {
               <Mail className="w-4 h-4" />
               hello@exevolv.io
             </a>
-            <span className="flex items-center gap-2">
-              <MapPin className="w-4 h-4" />
-              Worldwide
-            </span>
           </div>
         </div>
       </div>
