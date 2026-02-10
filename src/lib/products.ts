@@ -31,8 +31,8 @@ export const products: Product[] = [
     tagline: 'Safe, Secure, Private Proxy Connector',
     description: 'IP Filter Exchange is a powerful and secure proxy management extension designed to protect your online privacy. It allows you to easily connect, switch, and manage proxies while preventing IP leaks with built-in WebRTC protection. With automatic timezone matching and a smooth user experience, it ensures safe and reliable browsing every time.',
     category: 'chrome-extension',
-    icon: '/images/products/ip-filter-exchange-icon.svg',
-    screenshots: ['/images/products/ip-filter-exchange-1.png', '/images/products/ip-filter-exchange-2.png'],
+    icon: '/images/products/ip-filter-exchange-icon.png',
+    screenshots: ['/images/products/ip-filter-exchange-banner.png'],
     features: [
       {
         title: 'Proxy Management',
@@ -82,8 +82,8 @@ export const products: Product[] = [
     tagline: 'Instant Quiz Solver – Your Intelligent Study Companion',
     description: 'Transform the way you approach online quizzes and multiple-choice questions with QuizMaster AI. Our advanced artificial intelligence technology scans your screen, extracts questions, and provides accurate answers with comprehensive explanations in seconds.',
     category: 'chrome-extension',
-    icon: '/images/products/quizmaster-ai-icon.svg',
-    screenshots: ['/images/products/quizmaster-ai-1.png', '/images/products/quizmaster-ai-2.png'],
+    icon: '/images/products/quizmaster-ai-icon.png',
+    screenshots: ['/images/products/quizmaster-ai-banner.png'],
     features: [
       {
         title: 'Scan and Solve',
@@ -133,8 +133,8 @@ export const products: Product[] = [
     tagline: 'Complete Matric & Inter Study App',
     description: 'Prepare smarter for Matric & Inter (Class 9, 10, 11, 12) with Taleem Spot – Pakistan\'s #1 BISE study app. Access free Notes, Past Papers, Guess Papers, Textbooks & Practice Tests – all in one place. Our goal is to make exam preparation smarter and stress-free with a simple, user-friendly, and engaging study experience.',
     category: 'android-app',
-    icon: '/images/products/taleemspot-icon.svg',
-    screenshots: ['/images/products/taleemspot-1.png', '/images/products/taleemspot-2.png'],
+    icon: '/images/products/quizmaster-ai-icon.png',
+    screenshots: ['/images/products/quizmaster-ai-banner.png'],
     features: [
       {
         title: 'Past Papers',
@@ -184,8 +184,8 @@ export const products: Product[] = [
     tagline: 'Sound Booster – Boost Volume Up to 600%',
     description: 'Pulser Pro is a powerful sound booster Chrome extension that amplifies audio up to 600% on any website. Whether you\'re watching YouTube, streaming on Netflix, or attending online meetings, Pulser Pro delivers crystal-clear, ultra-loud sound with a sleek and intuitive interface. Fine-tune volume, bass, and audio profiles per tab — all with zero lag.',
     category: 'chrome-extension',
-    icon: '/images/products/pulser-pro-icon.svg',
-    screenshots: ['/images/products/pulser-pro-1.png', '/images/products/pulser-pro-2.png'],
+    icon: '/images/products/pulser-pro-icon.png',
+    screenshots: ['/images/products/pulser-pro-banner.png'],
     features: [
       {
         title: '600% Volume Boost',
@@ -235,8 +235,8 @@ export const products: Product[] = [
     tagline: 'Block All Ads, Instantly',
     description: 'ZeroAds is a lightweight and powerful ad blocker designed to give you a cleaner, faster, and more private browsing experience. It blocks video ads on YouTube and streaming platforms, display and banner ads, pop-ups, overlay notifications, and tracking scripts that monitor your online activity — all with zero configuration needed.',
     category: 'chrome-extension',
-    icon: '/images/products/zeroadsblocker-icon.svg',
-    screenshots: ['/images/products/zeroadsblocker-1.png', '/images/products/zeroadsblocker-2.png'],
+    icon: '/images/products/zeroadsblocker-icon.png',
+    screenshots: ['/images/products/zeroadsblocker-banner.png'],
     features: [
       {
         title: 'Block All Ads',

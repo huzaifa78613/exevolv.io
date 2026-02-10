@@ -117,16 +117,23 @@ export default function ProductPage({ params }: Props) {
 
             {/* Product Visual */}
             <div className="relative">
-              <div className="aspect-video bg-gradient-to-br from-primary-100 to-primary-200 dark:from-primary-900/30 dark:to-primary-800/30 rounded-3xl flex items-center justify-center shadow-2xl shadow-primary/20">
-                <div className="text-center p-8">
-                  <div className="w-24 h-24 bg-primary rounded-3xl flex items-center justify-center mx-auto mb-4">
-                    <span className="text-5xl font-bold text-white">{product.name.charAt(0)}</span>
-                  </div>
-                  <p className="text-dark-600 dark:text-dark-400">
-                    Screenshot placeholder
-                  </p>
+              {product.screenshots && product.screenshots.length > 0 ? (
+                <div className="aspect-video rounded-3xl overflow-hidden shadow-2xl shadow-primary/20">
+                  <img 
+                    src={product.screenshots[0]} 
+                    alt={`${product.name} - Product Screenshot`}
+                    className="w-full h-full object-cover"
+                  />
                 </div>
-              </div>
+              ) : (
+                <div className="aspect-video bg-gradient-to-br from-primary-100 to-primary-200 dark:from-primary-900/30 dark:to-primary-800/30 rounded-3xl flex items-center justify-center shadow-2xl shadow-primary/20">
+                  <div className="text-center p-8">
+                    <div className="w-24 h-24 bg-primary rounded-3xl flex items-center justify-center mx-auto mb-4">
+                      <span className="text-5xl font-bold text-white">{product.name.charAt(0)}</span>
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </div>

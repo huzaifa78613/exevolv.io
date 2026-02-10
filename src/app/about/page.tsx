@@ -46,7 +46,7 @@ const values = [
 ]
 
 const milestones = [
-  { year: '2024', event: 'Founded exevolv.io', description: 'Started with a vision to create useful browser extensions.' },
+  { year: '2024', event: 'Founded exevolv.io', description: 'Huzaifa started exevolv.io from Faisalabad, Pakistan with a vision to create useful browser extensions.' },
   { year: '2025', event: 'Launched IP Filter Exchange', description: 'Our first Chrome extension for secure proxy management.' },
   { year: '2025', event: 'Released QuizMaster AI', description: 'AI-powered quiz solving extension for students.' },
   { year: '2025', event: 'TaleemSpot Notes App', description: 'Launched our first Android app for Pakistani students.' },
@@ -123,8 +123,9 @@ export default function AboutPage() {
             <h2 className="text-3xl md:text-4xl font-bold text-dark-900 dark:text-white mb-4">
               Our Story
             </h2>
-            <p className="text-dark-600 dark:text-dark-400">
-              exevolv.io started with a simple idea: create tools that we ourselves wanted to use. 
+            <p className="text-dark-600 dark:text-dark-400 leading-relaxed">
+              exevolv.io was founded by <strong className="text-dark-900 dark:text-white">Huzaifa</strong> in <strong className="text-dark-900 dark:text-white">Faisalabad, Pakistan</strong>. 
+              It started with a simple idea: create tools that we ourselves wanted to use. 
               As developers and power users, we noticed gaps in the market for privacy-focused, 
               user-friendly browser extensions. So we decided to build them.
             </p>
@@ -206,6 +207,36 @@ export default function AboutPage() {
             <div>
               <div className="text-4xl md:text-5xl font-bold text-white mb-2">4.8</div>
               <div className="text-white/80">Avg Rating</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Founder Section */}
+      <section className="section-padding bg-white dark:bg-dark-950">
+        <div className="container-custom">
+          <div className="max-w-3xl mx-auto">
+            <div className="card p-8 md:p-10 border-t-4 border-t-primary">
+              <div className="flex flex-col md:flex-row items-start gap-6">
+                <div className="w-20 h-20 bg-gradient-to-br from-primary to-primary-600 rounded-2xl flex items-center justify-center flex-shrink-0 shadow-lg shadow-primary/25">
+                  <span className="text-white font-bold text-3xl">H</span>
+                </div>
+                <div>
+                  <h2 className="text-2xl font-bold text-dark-900 dark:text-white mb-1">Huzaifa</h2>
+                  <p className="text-primary font-medium mb-3">Founder &amp; Developer</p>
+                  <p className="text-dark-600 dark:text-dark-400 leading-relaxed mb-4">
+                    Hi, I&apos;m Huzaifa — the founder and sole developer behind exevolv.io. Based in 
+                    Faisalabad, Pakistan, I&apos;m passionate about building tools that make the internet 
+                    safer, smarter, and more productive for everyone. I started exevolv.io in 2024 
+                    to solve real problems I faced as a developer and student. Every product we ship 
+                    is something I personally use and believe in.
+                  </p>
+                  <div className="flex items-center gap-4 text-sm text-dark-500">
+                    <span className="flex items-center gap-1.5">📍 Faisalabad, Pakistan</span>
+                    <span className="flex items-center gap-1.5">💼 Full-Stack Developer</span>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

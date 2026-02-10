@@ -12,8 +12,8 @@ export const metadata: Metadata = {
   },
   description: 'Building innovative browser extensions and applications that enhance your digital experience. Discover our Chrome extensions, Firefox add-ons, and Android apps.',
   keywords: ['browser extensions', 'chrome extensions', 'firefox addons', 'android apps', 'productivity tools', 'privacy tools', 'quiz solver', 'proxy extension', 'study app'],
-  authors: [{ name: 'exevolv.io' }],
-  creator: 'exevolv.io',
+  authors: [{ name: 'Huzaifa', url: 'https://exevolv.io/about' }],
+  creator: 'Huzaifa',
   publisher: 'exevolv.io',
   formatDetection: {
     email: false,
@@ -105,21 +105,18 @@ export default function RootLayout({
         </main>
         <Footer />
         <CookieConsent />
-        {/* Google Analytics Placeholder */}
-        {process.env.NODE_ENV === 'production' && (
-          <script
-            dangerouslySetInnerHTML={{
-              __html: `
-                // Google Analytics placeholder
-                // Replace with your GA4 measurement ID
-                // window.dataLayer = window.dataLayer || [];
-                // function gtag(){dataLayer.push(arguments);}
-                // gtag('js', new Date());
-                // gtag('config', 'G-XXXXXXXXXX');
-              `
-            }}
-          />
-        )}
+        {/* Google Analytics */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-3LH93Q9P11" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-3LH93Q9P11');
+            `
+          }}
+        />
       </body>
     </html>
   )

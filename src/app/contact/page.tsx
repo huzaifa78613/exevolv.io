@@ -28,6 +28,13 @@ const contactMethods = [
     href: 'mailto:support@exevolv.io',
   },
   {
+    icon: <MapPin className="w-6 h-6" />,
+    title: 'Location',
+    description: 'Based in',
+    value: 'Faisalabad, Pakistan',
+    href: null,
+  },
+  {
     icon: <Clock className="w-6 h-6" />,
     title: 'Response Time',
     description: 'We typically respond within',
@@ -140,7 +147,10 @@ export default function ContactPage() {
                   Send us a Message
                 </h2>
                 
-                <form className="space-y-6">
+                <form action="https://api.web3forms.com/submit" method="POST" className="space-y-6">
+                  <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY" />
+                  <input type="hidden" name="subject" value="New Contact Form Submission - exevolv.io" />
+                  <input type="hidden" name="from_name" value="exevolv.io Contact Form" />
                   <div className="grid sm:grid-cols-2 gap-6">
                     <div>
                       <label htmlFor="name" className="block text-sm font-medium text-dark-700 dark:text-dark-300 mb-2">
