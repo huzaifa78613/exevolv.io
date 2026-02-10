@@ -16,13 +16,6 @@ const navigation = [
       { name: 'TaleemSpot Notes', href: '/products/taleemspot-notes' },
     ]
   },
-  {
-    name: 'Tools',
-    href: '/youtube-downloader',
-    children: [
-      { name: 'YouTube Downloader', href: '/youtube-downloader' },
-    ]
-  },
   { name: 'About', href: '/about' },
   { name: 'Blog', href: '/blog' },
   { name: 'Docs', href: '/docs' },
