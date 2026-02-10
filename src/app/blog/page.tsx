@@ -2,86 +2,18 @@ import { Metadata } from 'next'
 import Link from 'next/link'
 import Breadcrumbs from '@/components/ui/Breadcrumbs'
 import { Calendar, User, ArrowRight, Tag, Clock } from 'lucide-react'
+import { blogPosts, getCategories } from '@/lib/blog'
 
 export const metadata: Metadata = {
-  title: 'Blog - Tech Articles & Tutorials',
-  description: 'Read the latest articles about browser extension development, productivity tips, product updates, and more from the exevolv.io team.',
+  title: 'Blog - Tech Articles, Privacy Guides & Tutorials',
+  description: 'Read in-depth articles about online privacy, browser security, Chrome extensions, education technology, and productivity tips from the exevolv.io team.',
   openGraph: {
     title: 'Blog - exevolv.io',
-    description: 'Tech articles, tutorials, and product updates from exevolv.io.',
+    description: 'In-depth articles on privacy, security, browser extensions, education technology, and productivity from exevolv.io.',
   },
 }
 
-const blogPosts = [
-  {
-    id: 1,
-    slug: 'getting-started-with-chrome-extensions',
-    title: 'Getting Started with Chrome Extension Development',
-    excerpt: 'Learn the basics of building Chrome extensions from scratch. We cover manifest files, content scripts, and popup UIs.',
-    category: 'Tutorial',
-    author: 'exevolv.io Team',
-    date: '2026-02-01',
-    readTime: '8 min read',
-    featured: true,
-  },
-  {
-    id: 2,
-    slug: 'introducing-ip-filter-exchange-v2',
-    title: 'Introducing IP Filter Exchange v2.3 - Major Update',
-    excerpt: 'We\'re excited to announce a major update to IP Filter Exchange with improved WebRTC protection and a redesigned interface.',
-    category: 'Product Update',
-    author: 'exevolv.io Team',
-    date: '2026-01-18',
-    readTime: '4 min read',
-    featured: true,
-  },
-  {
-    id: 3,
-    slug: 'privacy-tips-for-safe-browsing',
-    title: '10 Essential Privacy Tips for Safe Web Browsing',
-    excerpt: 'Protect your online privacy with these essential tips. From browser settings to extensions, we cover everything you need.',
-    category: 'Productivity',
-    author: 'exevolv.io Team',
-    date: '2026-01-10',
-    readTime: '6 min read',
-    featured: false,
-  },
-  {
-    id: 4,
-    slug: 'quizmaster-ai-how-it-works',
-    title: 'How QuizMaster AI Uses OCR and AI for Quiz Solving',
-    excerpt: 'A deep dive into the technology behind QuizMaster AI. Learn how we use OCR and language models to extract and solve questions.',
-    category: 'Tech Deep Dive',
-    author: 'exevolv.io Team',
-    date: '2026-01-05',
-    readTime: '10 min read',
-    featured: false,
-  },
-  {
-    id: 5,
-    slug: 'best-study-apps-2026',
-    title: 'Best Study Apps for Students in 2026',
-    excerpt: 'Discover the top apps and tools that can help you study more effectively and ace your exams this year.',
-    category: 'Productivity',
-    author: 'exevolv.io Team',
-    date: '2025-12-28',
-    readTime: '7 min read',
-    featured: false,
-  },
-  {
-    id: 6,
-    slug: 'webrtc-leak-protection-explained',
-    title: 'WebRTC Leak Protection: What It Is and Why It Matters',
-    excerpt: 'Understanding WebRTC leaks and how they can expose your real IP address even when using a VPN or proxy.',
-    category: 'Security',
-    author: 'exevolv.io Team',
-    date: '2025-12-20',
-    readTime: '5 min read',
-    featured: false,
-  },
-]
-
-const categories = ['All', 'Product Update', 'Tutorial', 'Productivity', 'Security', 'Tech Deep Dive']
+const categories = getCategories()
 
 export default function BlogPage() {
   const featuredPosts = blogPosts.filter(post => post.featured)
@@ -99,8 +31,8 @@ export default function BlogPage() {
               Blog
             </h1>
             <p className="text-lg text-dark-600 dark:text-dark-400">
-              Articles, tutorials, and updates from the exevolv.io team. Learn about browser 
-              extension development, productivity tips, and our latest product updates.
+              In-depth articles on online privacy, browser security, education technology, and 
+              productivity. Practical guides and tutorials from the exevolv.io team.
             </p>
           </div>
         </div>

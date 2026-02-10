@@ -1,5 +1,6 @@
 import { MetadataRoute } from 'next'
 import { products } from '@/lib/products'
+import { blogPosts } from '@/lib/blog'
 
 type ChangeFrequency = 'always' | 'hourly' | 'daily' | 'weekly' | 'monthly' | 'yearly' | 'never'
 
@@ -62,5 +63,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ])
 
-  return [...staticUrls, ...productUrls]
+  // Blog post pages
+  const blogUrls: MetadataRoute.Sitemap = blogPosts.map((post) => ({
+    url: `${baseUrl}/blog/${post.slug}`,
+    lastModified: new Date(post.date),
+    changeFrequency: 'monthly' as ChangeFrequency,
+    priority: 0.7,
+  }))
+
+  return [...staticUrls, ...productUrls, ...blogUrls]
 }
