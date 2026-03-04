@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+import ytdl from '@distube/ytdl-core'
 
 function extractVideoId(url: string): string | null {
   const patterns = [
@@ -16,9 +17,11 @@ function extractVideoId(url: string): string | null {
   return null
 }
 
+export const maxDuration = 60 // Allow up to 60s for Vercel serverless
+
 export async function POST(request: NextRequest) {
   try {
-    const { url, quality, format } = await request.json()
+    const { url, itag } = await request.json()
 
     if (!url) {
       return NextResponse.json({ error: 'URL is required' }, { status: 400 })
@@ -29,85 +32,56 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Invalid YouTube URL' }, { status: 400 })
     }
 
-    // Use cobalt.tools API (free, open-source YouTube download API)
-    const cobaltPayload: Record<string, string | boolean> = {
-      url: `https://www.youtube.com/watch?v=${videoId}`,
+    const videoUrl = `https://www.youtube.com/watch?v=${videoId}`
+
+    // Get video info to find the format
+    const info = await ytdl.getInfo(videoUrl)
+    
+    let selectedFormat
+    if (itag) {
+      selectedFormat = info.formats.find((f) => f.itag === parseInt(itag))
     }
 
-    if (format === 'mp3') {
-      cobaltPayload.isAudioOnly = true
-      cobaltPayload.aFormat = 'mp3'
-    } else {
-      cobaltPayload.vQuality = quality?.replace('p', '') || '720'
-    }
-
-    // Try primary API (cobalt)
-    try {
-      const cobaltRes = await fetch('https://api.cobalt.tools/api/json', {
-        method: 'POST',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(cobaltPayload),
+    if (!selectedFormat) {
+      // Fallback: pick best format with both audio and video
+      selectedFormat = ytdl.chooseFormat(info.formats, {
+        quality: 'highest',
+        filter: 'audioandvideo',
       })
-
-      if (cobaltRes.ok) {
-        const cobaltData = await cobaltRes.json()
-        if (cobaltData.url) {
-          return NextResponse.json({ 
-            downloadUrl: cobaltData.url,
-            filename: cobaltData.filename || `youtube-${videoId}.${format || 'mp4'}`
-          })
-        }
-      }
-    } catch {
-      // Fall through to fallback
     }
 
-    // Fallback: return a constructed download URL using a public service
-    const fallbackUrl = format === 'mp3'
-      ? `https://co.wuk.sh/api/json`
-      : `https://co.wuk.sh/api/json`
-
-    try {
-      const fallbackRes = await fetch(fallbackUrl, {
-        method: 'POST',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          url: `https://www.youtube.com/watch?v=${videoId}`,
-          ...(format === 'mp3' ? { isAudioOnly: true, aFormat: 'mp3' } : { vQuality: quality?.replace('p', '') || '720' }),
-        }),
-      })
-
-      if (fallbackRes.ok) {
-        const fallbackData = await fallbackRes.json()
-        if (fallbackData.url) {
-          return NextResponse.json({
-            downloadUrl: fallbackData.url,
-            filename: `youtube-${videoId}.${format || 'mp4'}`,
-          })
-        }
-      }
-    } catch {
-      // Fall through
+    if (!selectedFormat || !selectedFormat.url) {
+      return NextResponse.json(
+        { error: 'Could not find a downloadable format for this video.' },
+        { status: 404 }
+      )
     }
 
-    // If all APIs fail, provide a helpful response
-    return NextResponse.json(
-      { 
-        error: 'Download service temporarily unavailable. Please try again later.',
-        fallbackUrl: `https://www.y2mate.com/youtube/${videoId}`,
-      },
-      { status: 503 }
-    )
-  } catch (error) {
+    // Determine filename
+    const title = info.videoDetails.title.replace(/[^\w\s-]/g, '').trim().replace(/\s+/g, '_')
+    const ext = selectedFormat.container || 'mp4'
+    const filename = `${title}_${selectedFormat.qualityLabel || selectedFormat.audioBitrate || ''}.${ext}`
+    const contentType = selectedFormat.mimeType?.split(';')[0] || `video/${ext}`
+
+    // Return the direct URL for client-side download
+    return NextResponse.json({
+      downloadUrl: selectedFormat.url,
+      filename,
+      contentType,
+      size: selectedFormat.contentLength || null,
+    })
+  } catch (error: any) {
     console.error('YouTube download error:', error)
+
+    if (error.message?.includes('private') || error.message?.includes('login')) {
+      return NextResponse.json(
+        { error: 'This video is private or requires login.' },
+        { status: 403 }
+      )
+    }
+
     return NextResponse.json(
-      { error: 'Failed to process download request.' },
+      { error: 'Failed to process download. Please try again.' },
       { status: 500 }
     )
   }

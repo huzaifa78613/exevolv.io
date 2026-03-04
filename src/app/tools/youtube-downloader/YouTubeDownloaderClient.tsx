@@ -31,6 +31,9 @@ interface VideoFormat {
   type: 'video' | 'audio'
   format: string
   label: string
+  itag: number
+  size: string
+  hasAudio: boolean
 }
 
 interface VideoInfo {
@@ -46,6 +49,12 @@ interface VideoInfo {
   formats: VideoFormat[]
 }
 
+interface DownloadProgress {
+  percent: number
+  loaded: number
+  total: number
+}
+
 export default function YouTubeDownloaderClient() {
   const [url, setUrl] = useState('')
   const [videoInfo, setVideoInfo] = useState<VideoInfo | null>(null)
@@ -57,6 +66,8 @@ export default function YouTubeDownloaderClient() {
   const [thumbnailError, setThumbnailError] = useState(false)
   const [activeTab, setActiveTab] = useState<'video' | 'audio'>('video')
   const [openFaq, setOpenFaq] = useState<number | null>(null)
+  const [showEmbed, setShowEmbed] = useState(false)
+  const [downloadProgress, setDownloadProgress] = useState<DownloadProgress | null>(null)
   const resultRef = useRef<HTMLDivElement>(null)
 
   const handleFetchInfo = async (e: React.FormEvent) => {
@@ -68,6 +79,8 @@ export default function YouTubeDownloaderClient() {
     setVideoInfo(null)
     setSelectedFormat(null)
     setThumbnailError(false)
+    setShowEmbed(false)
+    setDownloadProgress(null)
 
     try {
       const res = await fetch('/api/youtube/info', {
@@ -103,43 +116,81 @@ export default function YouTubeDownloaderClient() {
 
     setDownloading(true)
     setError('')
+    setDownloadProgress(null)
 
     try {
+      // Step 1: Get the direct download URL from our API
       const res = await fetch('/api/youtube/download', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           url: videoInfo.url,
-          quality: selectedFormat.quality,
-          format: selectedFormat.format,
+          itag: selectedFormat.itag,
         }),
       })
 
       const data = await res.json()
 
       if (!res.ok) {
-        if (data.fallbackUrl) {
-          window.open(data.fallbackUrl, '_blank')
-          return
-        }
         throw new Error(data.error || 'Download failed')
       }
 
       if (data.downloadUrl) {
-        // Open download in new tab
-        const link = document.createElement('a')
-        link.href = data.downloadUrl
-        link.download = data.filename || `youtube-${videoInfo.id}.${selectedFormat.format}`
-        link.target = '_blank'
-        link.rel = 'noopener noreferrer'
-        document.body.appendChild(link)
-        link.click()
-        document.body.removeChild(link)
+        // Step 2: Fetch the actual file with progress tracking
+        const downloadRes = await fetch(data.downloadUrl)
+
+        if (!downloadRes.ok) {
+          throw new Error('Failed to download file')
+        }
+
+        const contentLength = data.size || downloadRes.headers.get('content-length')
+        const total = contentLength ? parseInt(contentLength, 10) : 0
+
+        if (downloadRes.body && total > 0) {
+          // Stream with progress
+          const reader = downloadRes.body.getReader()
+          const chunks: BlobPart[] = []
+          let loaded = 0
+
+          while (true) {
+            const { done, value } = await reader.read()
+            if (done) break
+            chunks.push(value)
+            loaded += value.length
+            setDownloadProgress({
+              percent: Math.round((loaded / total) * 100),
+              loaded,
+              total,
+            })
+          }
+
+          const blob = new Blob(chunks, { type: data.contentType || 'video/mp4' })
+          const blobUrl = URL.createObjectURL(blob)
+          const link = document.createElement('a')
+          link.href = blobUrl
+          link.download = data.filename || `youtube-${videoInfo.id}.${selectedFormat.format}`
+          document.body.appendChild(link)
+          link.click()
+          document.body.removeChild(link)
+          URL.revokeObjectURL(blobUrl)
+        } else {
+          // Fallback: direct blob download without progress
+          const blob = await downloadRes.blob()
+          const blobUrl = URL.createObjectURL(blob)
+          const link = document.createElement('a')
+          link.href = blobUrl
+          link.download = data.filename || `youtube-${videoInfo.id}.${selectedFormat.format}`
+          document.body.appendChild(link)
+          link.click()
+          document.body.removeChild(link)
+          URL.revokeObjectURL(blobUrl)
+        }
       }
     } catch (err: any) {
       setError(err.message || 'Download failed. Please try again.')
     } finally {
       setDownloading(false)
+      setDownloadProgress(null)
     }
   }
 
@@ -165,6 +216,8 @@ export default function YouTubeDownloaderClient() {
     setError('')
     setSelectedFormat(null)
     setThumbnailError(false)
+    setShowEmbed(false)
+    setDownloadProgress(null)
   }
 
   const videoFormats = videoInfo?.formats.filter((f) => f.type === 'video') || []
@@ -335,27 +388,37 @@ export default function YouTubeDownloaderClient() {
             <div className="max-w-5xl mx-auto">
               <div className="card overflow-hidden dark:bg-dark-900 dark:border-dark-800 animate-fade-up">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
-                  {/* Video Thumbnail */}
-                  <div className="relative aspect-video lg:aspect-auto bg-dark-100 dark:bg-dark-800 overflow-hidden">
-                    <Image
-                      src={thumbnailError ? videoInfo.thumbnailMq : videoInfo.thumbnail}
-                      alt={videoInfo.title}
-                      fill
-                      className="object-cover"
-                      onError={() => setThumbnailError(true)}
-                      sizes="(max-width: 1024px) 100vw, 50vw"
-                    />
-                    {/* Play overlay */}
-                    <a
-                      href={videoInfo.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="absolute inset-0 flex items-center justify-center bg-black/20 hover:bg-black/30 transition-colors group"
-                    >
-                      <div className="w-16 h-16 md:w-20 md:h-20 bg-red-600 rounded-full flex items-center justify-center shadow-2xl group-hover:scale-110 transition-transform">
-                        <Play className="w-8 h-8 md:w-10 md:h-10 text-white ml-1" />
-                      </div>
-                    </a>
+                  {/* Video Thumbnail / Embedded Player */}
+                  <div className="relative aspect-video lg:aspect-auto bg-dark-100 dark:bg-dark-800 overflow-hidden min-h-[240px]">
+                    {showEmbed ? (
+                      <iframe
+                        src={`https://www.youtube.com/embed/${videoInfo.id}?autoplay=1&rel=0`}
+                        title={videoInfo.title}
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                        className="absolute inset-0 w-full h-full"
+                      />
+                    ) : (
+                      <>
+                        <Image
+                          src={thumbnailError ? videoInfo.thumbnailMq : videoInfo.thumbnail}
+                          alt={videoInfo.title}
+                          fill
+                          className="object-cover"
+                          onError={() => setThumbnailError(true)}
+                          sizes="(max-width: 1024px) 100vw, 50vw"
+                        />
+                        {/* Play overlay - opens embedded player */}
+                        <button
+                          onClick={() => setShowEmbed(true)}
+                          className="absolute inset-0 flex items-center justify-center bg-black/20 hover:bg-black/30 transition-colors group cursor-pointer"
+                        >
+                          <div className="w-16 h-16 md:w-20 md:h-20 bg-red-600 rounded-full flex items-center justify-center shadow-2xl group-hover:scale-110 transition-transform">
+                            <Play className="w-8 h-8 md:w-10 md:h-10 text-white ml-1" />
+                          </div>
+                        </button>
+                      </>
+                    )}
                   </div>
 
                   {/* Video Info & Download Options */}
@@ -363,8 +426,20 @@ export default function YouTubeDownloaderClient() {
                     <h2 className="text-lg sm:text-xl font-bold text-dark-900 dark:text-white mb-2 line-clamp-2">
                       {videoInfo.title}
                     </h2>
-                    <div className="flex items-center gap-2 mb-5">
+                    <div className="flex flex-wrap items-center gap-2 mb-5">
                       <span className="text-sm text-dark-500 dark:text-dark-400">{videoInfo.author}</span>
+                      {videoInfo.duration && (
+                        <>
+                          <span className="text-dark-300">•</span>
+                          <span className="text-sm text-dark-500 dark:text-dark-400">{videoInfo.duration}</span>
+                        </>
+                      )}
+                      {videoInfo.viewCount && (
+                        <>
+                          <span className="text-dark-300">•</span>
+                          <span className="text-sm text-dark-500 dark:text-dark-400">{videoInfo.viewCount}</span>
+                        </>
+                      )}
                       <span className="text-dark-300">•</span>
                       <button
                         onClick={handleCopyUrl}
@@ -443,50 +518,68 @@ export default function YouTubeDownloaderClient() {
                               <div className="w-2 h-2 rounded-full bg-red-500" />
                             )}
                           </div>
-                          <div className="flex-1 flex items-center justify-between">
+                          <div className="flex-1 flex items-center justify-between gap-2">
                             <span className="text-sm font-medium text-dark-700 dark:text-dark-300">
                               {format.label}
                             </span>
-                            <span
-                              className={cn(
-                                'text-xs px-2 py-0.5 rounded-full font-medium',
-                                format.quality === '1080p'
-                                  ? 'bg-yellow-100 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-400'
-                                  : format.quality === '720p'
-                                  ? 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400'
-                                  : 'bg-dark-100 text-dark-600 dark:bg-dark-800 dark:text-dark-400'
+                            <div className="flex items-center gap-2 flex-shrink-0">
+                              {format.size && (
+                                <span className="text-xs text-dark-400">{format.size}</span>
                               )}
-                            >
-                              {format.format.toUpperCase()}
-                            </span>
+                              <span
+                                className={cn(
+                                  'text-xs px-2 py-0.5 rounded-full font-medium',
+                                  format.quality.includes('1080')
+                                    ? 'bg-yellow-100 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-400'
+                                    : format.quality.includes('720')
+                                    ? 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400'
+                                    : 'bg-dark-100 text-dark-600 dark:bg-dark-800 dark:text-dark-400'
+                                )}
+                              >
+                                {format.format.toUpperCase()}
+                              </span>
+                            </div>
                           </div>
                         </label>
                       ))}
                     </div>
 
                     {/* Download Button */}
-                    <button
-                      onClick={handleDownload}
-                      disabled={downloading || !selectedFormat}
-                      className={cn(
-                        'w-full flex items-center justify-center gap-2 px-6 py-4 text-base font-semibold text-white',
-                        'bg-red-600 hover:bg-red-700 rounded-xl transition-all duration-300',
-                        'shadow-lg shadow-red-500/25 hover:shadow-xl hover:shadow-red-500/30',
-                        'disabled:opacity-50 disabled:cursor-not-allowed'
+                    <div className="space-y-2">
+                      <button
+                        onClick={handleDownload}
+                        disabled={downloading || !selectedFormat}
+                        className={cn(
+                          'w-full flex items-center justify-center gap-2 px-6 py-4 text-base font-semibold text-white',
+                          'bg-red-600 hover:bg-red-700 rounded-xl transition-all duration-300',
+                          'shadow-lg shadow-red-500/25 hover:shadow-xl hover:shadow-red-500/30',
+                          'disabled:opacity-50 disabled:cursor-not-allowed'
+                        )}
+                      >
+                        {downloading ? (
+                          <>
+                            <Loader2 className="w-5 h-5 animate-spin" />
+                            {downloadProgress
+                              ? `Downloading... ${downloadProgress.percent}%`
+                              : 'Preparing Download...'}
+                          </>
+                        ) : (
+                          <>
+                            <Download className="w-5 h-5" />
+                            Download {selectedFormat?.type === 'audio' ? 'Audio' : 'Video'}
+                          </>
+                        )}
+                      </button>
+                      {/* Progress Bar */}
+                      {downloading && downloadProgress && (
+                        <div className="w-full bg-dark-100 dark:bg-dark-700 rounded-full h-2 overflow-hidden">
+                          <div
+                            className="bg-red-500 h-full rounded-full transition-all duration-300 ease-out"
+                            style={{ width: `${downloadProgress.percent}%` }}
+                          />
+                        </div>
                       )}
-                    >
-                      {downloading ? (
-                        <>
-                          <Loader2 className="w-5 h-5 animate-spin" />
-                          Preparing Download...
-                        </>
-                      ) : (
-                        <>
-                          <Download className="w-5 h-5" />
-                          Download {selectedFormat?.type === 'audio' ? 'Audio' : 'Video'}
-                        </>
-                      )}
-                    </button>
+                    </div>
                   </div>
                 </div>
               </div>
