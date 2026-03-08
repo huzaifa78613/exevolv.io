@@ -2,14 +2,30 @@ import { NextRequest, NextResponse } from 'next/server'
 
 export const maxDuration = 60
 
-// Proxy the download through our server to avoid CORS issues
-// The client sends the direct YouTube streaming URL obtained from /api/youtube/info
-export async function POST(request: NextRequest) {
+// GET-based download proxy so the browser handles the download natively
+// URL params: url (base64 encoded download URL), filename, type
+export async function GET(request: NextRequest) {
   try {
-    const { downloadUrl, filename, contentType } = await request.json()
+    const { searchParams } = new URL(request.url)
+    const encodedUrl = searchParams.get('url')
+    const filename = searchParams.get('filename') || 'youtube-video.mp4'
+    const contentType = searchParams.get('type') || 'video/mp4'
 
-    if (!downloadUrl) {
+    if (!encodedUrl) {
       return NextResponse.json({ error: 'Download URL is required' }, { status: 400 })
+    }
+
+    // Decode the base64-encoded download URL
+    let downloadUrl: string
+    try {
+      downloadUrl = Buffer.from(encodedUrl, 'base64').toString('utf-8')
+    } catch {
+      return NextResponse.json({ error: 'Invalid download URL' }, { status: 400 })
+    }
+
+    // Validate it's a YouTube/Google CDN URL
+    if (!downloadUrl.includes('googlevideo.com') && !downloadUrl.includes('youtube.com')) {
+      return NextResponse.json({ error: 'Invalid download source' }, { status: 400 })
     }
 
     // Fetch the video/audio from YouTube's CDN
@@ -30,15 +46,15 @@ export async function POST(request: NextRequest) {
     }
 
     const headers = new Headers()
-    headers.set('Content-Type', contentType || res.headers.get('content-type') || 'video/mp4')
-    headers.set('Content-Disposition', `attachment; filename="${filename || 'youtube-video.mp4'}"`)
+    headers.set('Content-Type', contentType)
+    headers.set('Content-Disposition', `attachment; filename="${filename}"`)
     
     const contentLength = res.headers.get('content-length')
     if (contentLength) {
       headers.set('Content-Length', contentLength)
     }
     
-    // Stream the response
+    // Stream the response - browser handles the download natively
     return new NextResponse(res.body, {
       status: 200,
       headers,

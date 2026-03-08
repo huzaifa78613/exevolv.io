@@ -5,12 +5,26 @@ import yt_dlp
 
 
 def extract_video_id(url):
+    # Clean the URL - strip whitespace
+    url = url.strip()
+    
     patterns = [
-        r'(?:youtube\.com\/watch\?v=)([a-zA-Z0-9_-]{11})',
+        # Standard watch URL: youtube.com/watch?v=VIDEO_ID (with optional extra params like &feature=share, &si=xxx)
+        r'(?:youtube\.com\/watch\?.*?v=)([a-zA-Z0-9_-]{11})',
+        # Short URL: youtu.be/VIDEO_ID (with optional ?si=xxx or other params)
         r'(?:youtu\.be\/)([a-zA-Z0-9_-]{11})',
+        # Embed URL: youtube.com/embed/VIDEO_ID
         r'(?:youtube\.com\/embed\/)([a-zA-Z0-9_-]{11})',
+        # Shorts URL: youtube.com/shorts/VIDEO_ID
         r'(?:youtube\.com\/shorts\/)([a-zA-Z0-9_-]{11})',
+        # Old embed URL: youtube.com/v/VIDEO_ID
         r'(?:youtube\.com\/v\/)([a-zA-Z0-9_-]{11})',
+        # Live URL: youtube.com/live/VIDEO_ID
+        r'(?:youtube\.com\/live\/)([a-zA-Z0-9_-]{11})',
+        # Music URL: music.youtube.com/watch?v=VIDEO_ID
+        r'(?:music\.youtube\.com\/watch\?.*?v=)([a-zA-Z0-9_-]{11})',
+        # Just a video ID (11 characters)
+        r'^([a-zA-Z0-9_-]{11})$',
     ]
     for pattern in patterns:
         match = re.search(pattern, url)

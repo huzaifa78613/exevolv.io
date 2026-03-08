@@ -50,12 +50,6 @@ interface VideoInfo {
   formats: VideoFormat[]
 }
 
-interface DownloadProgress {
-  percent: number
-  loaded: number
-  total: number
-}
-
 export default function YouTubeDownloaderClient() {
   const [url, setUrl] = useState('')
   const [videoInfo, setVideoInfo] = useState<VideoInfo | null>(null)
@@ -68,7 +62,6 @@ export default function YouTubeDownloaderClient() {
   const [activeTab, setActiveTab] = useState<'video' | 'audio'>('video')
   const [openFaq, setOpenFaq] = useState<number | null>(null)
   const [showEmbed, setShowEmbed] = useState(false)
-  const [downloadProgress, setDownloadProgress] = useState<DownloadProgress | null>(null)
   const resultRef = useRef<HTMLDivElement>(null)
 
   const handleFetchInfo = async (e: React.FormEvent) => {
@@ -81,7 +74,6 @@ export default function YouTubeDownloaderClient() {
     setSelectedFormat(null)
     setThumbnailError(false)
     setShowEmbed(false)
-    setDownloadProgress(null)
 
     try {
       const res = await fetch('/api/yt-info', {
@@ -117,78 +109,35 @@ export default function YouTubeDownloaderClient() {
 
     setDownloading(true)
     setError('')
-    setDownloadProgress(null)
 
     try {
       // Construct filename
       const safeTitle = videoInfo.title.replace(/[^\w\s-]/g, '').trim().replace(/\s+/g, '_')
-      const filename = `${safeTitle}_${selectedFormat.quality}.${selectedFormat.format}`
+      const ext = selectedFormat.format || 'mp4'
+      const filename = `${safeTitle}_${selectedFormat.quality}.${ext}`
+      const contentType = selectedFormat.type === 'audio' ? `audio/${ext}` : `video/${ext}`
 
-      // Download through our proxy to avoid CORS
-      const res = await fetch('/api/youtube/download', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          downloadUrl: selectedFormat.downloadUrl,
-          filename,
-          contentType: selectedFormat.type === 'audio' ? `audio/${selectedFormat.format}` : `video/${selectedFormat.format}`,
-        }),
-      })
+      // Encode the download URL as base64 for safe URL transport
+      const encodedUrl = btoa(selectedFormat.downloadUrl)
 
-      if (!res.ok) {
-        const errData = await res.json().catch(() => ({}))
-        throw new Error(errData.error || 'Download failed')
-      }
+      // Build the GET URL for native browser download
+      const downloadPath = `/api/youtube/download?url=${encodeURIComponent(encodedUrl)}&filename=${encodeURIComponent(filename)}&type=${encodeURIComponent(contentType)}`
 
-      const contentLength = res.headers.get('content-length')
-      const total = contentLength ? parseInt(contentLength, 10) : 0
+      // Trigger native browser download - browser handles progress bar natively
+      const link = document.createElement('a')
+      link.href = downloadPath
+      link.download = filename
+      link.style.display = 'none'
+      document.body.appendChild(link)
+      link.click()
+      document.body.removeChild(link)
 
-      if (res.body && total > 0) {
-        // Stream with progress
-        const reader = res.body.getReader()
-        const chunks: BlobPart[] = []
-        let loaded = 0
-
-        while (true) {
-          const { done, value } = await reader.read()
-          if (done) break
-          chunks.push(value)
-          loaded += value.length
-          setDownloadProgress({
-            percent: Math.round((loaded / total) * 100),
-            loaded,
-            total,
-          })
-        }
-
-        const blob = new Blob(chunks, {
-          type: selectedFormat.type === 'audio' ? `audio/${selectedFormat.format}` : `video/${selectedFormat.format}`,
-        })
-        const blobUrl = URL.createObjectURL(blob)
-        const link = document.createElement('a')
-        link.href = blobUrl
-        link.download = filename
-        document.body.appendChild(link)
-        link.click()
-        document.body.removeChild(link)
-        URL.revokeObjectURL(blobUrl)
-      } else {
-        // Fallback: blob download without progress
-        const blob = await res.blob()
-        const blobUrl = URL.createObjectURL(blob)
-        const link = document.createElement('a')
-        link.href = blobUrl
-        link.download = filename
-        document.body.appendChild(link)
-        link.click()
-        document.body.removeChild(link)
-        URL.revokeObjectURL(blobUrl)
-      }
+      // Brief delay to show the button state
+      await new Promise(resolve => setTimeout(resolve, 1500))
     } catch (err: any) {
       setError(err.message || 'Download failed. Please try again.')
     } finally {
       setDownloading(false)
-      setDownloadProgress(null)
     }
   }
 
@@ -215,7 +164,6 @@ export default function YouTubeDownloaderClient() {
     setSelectedFormat(null)
     setThumbnailError(false)
     setShowEmbed(false)
-    setDownloadProgress(null)
   }
 
   const videoFormats = videoInfo?.formats.filter((f) => f.type === 'video') || []
@@ -387,14 +335,15 @@ export default function YouTubeDownloaderClient() {
               <div className="card overflow-hidden dark:bg-dark-900 dark:border-dark-800 animate-fade-up">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
                   {/* Video Thumbnail / Embedded Player */}
-                  <div className="relative aspect-video lg:aspect-auto bg-dark-100 dark:bg-dark-800 overflow-hidden min-h-[240px]">
+                  <div className="relative aspect-video bg-dark-100 dark:bg-dark-800 overflow-hidden">
                     {showEmbed ? (
                       <iframe
-                        src={`https://www.youtube.com/embed/${videoInfo.id}?autoplay=1&rel=0`}
+                        src={`https://www.youtube.com/embed/${videoInfo.id}?autoplay=1&rel=0&modestbranding=1`}
                         title={videoInfo.title}
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                         allowFullScreen
-                        className="absolute inset-0 w-full h-full"
+                        className="absolute inset-0 w-full h-full border-0"
+                        referrerPolicy="strict-origin-when-cross-origin"
                       />
                     ) : (
                       <>
@@ -557,9 +506,7 @@ export default function YouTubeDownloaderClient() {
                         {downloading ? (
                           <>
                             <Loader2 className="w-5 h-5 animate-spin" />
-                            {downloadProgress
-                              ? `Downloading... ${downloadProgress.percent}%`
-                              : 'Preparing Download...'}
+                            Starting Download...
                           </>
                         ) : (
                           <>
@@ -568,15 +515,6 @@ export default function YouTubeDownloaderClient() {
                           </>
                         )}
                       </button>
-                      {/* Progress Bar */}
-                      {downloading && downloadProgress && (
-                        <div className="w-full bg-dark-100 dark:bg-dark-700 rounded-full h-2 overflow-hidden">
-                          <div
-                            className="bg-red-500 h-full rounded-full transition-all duration-300 ease-out"
-                            style={{ width: `${downloadProgress.percent}%` }}
-                          />
-                        </div>
-                      )}
                     </div>
                   </div>
                 </div>
