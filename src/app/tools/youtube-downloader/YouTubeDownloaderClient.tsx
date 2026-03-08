@@ -34,6 +34,7 @@ interface VideoFormat {
   itag: number
   size: string
   hasAudio: boolean
+  downloadUrl: string
 }
 
 interface VideoInfo {
@@ -83,7 +84,7 @@ export default function YouTubeDownloaderClient() {
     setDownloadProgress(null)
 
     try {
-      const res = await fetch('/api/youtube/info', {
+      const res = await fetch('/api/yt-info', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ url: url.trim() }),
@@ -119,72 +120,69 @@ export default function YouTubeDownloaderClient() {
     setDownloadProgress(null)
 
     try {
-      // Step 1: Get the direct download URL from our API
+      // Construct filename
+      const safeTitle = videoInfo.title.replace(/[^\w\s-]/g, '').trim().replace(/\s+/g, '_')
+      const filename = `${safeTitle}_${selectedFormat.quality}.${selectedFormat.format}`
+
+      // Download through our proxy to avoid CORS
       const res = await fetch('/api/youtube/download', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          url: videoInfo.url,
-          itag: selectedFormat.itag,
+          downloadUrl: selectedFormat.downloadUrl,
+          filename,
+          contentType: selectedFormat.type === 'audio' ? `audio/${selectedFormat.format}` : `video/${selectedFormat.format}`,
         }),
       })
 
-      const data = await res.json()
-
       if (!res.ok) {
-        throw new Error(data.error || 'Download failed')
+        const errData = await res.json().catch(() => ({}))
+        throw new Error(errData.error || 'Download failed')
       }
 
-      if (data.downloadUrl) {
-        // Step 2: Fetch the actual file with progress tracking
-        const downloadRes = await fetch(data.downloadUrl)
+      const contentLength = res.headers.get('content-length')
+      const total = contentLength ? parseInt(contentLength, 10) : 0
 
-        if (!downloadRes.ok) {
-          throw new Error('Failed to download file')
+      if (res.body && total > 0) {
+        // Stream with progress
+        const reader = res.body.getReader()
+        const chunks: BlobPart[] = []
+        let loaded = 0
+
+        while (true) {
+          const { done, value } = await reader.read()
+          if (done) break
+          chunks.push(value)
+          loaded += value.length
+          setDownloadProgress({
+            percent: Math.round((loaded / total) * 100),
+            loaded,
+            total,
+          })
         }
 
-        const contentLength = data.size || downloadRes.headers.get('content-length')
-        const total = contentLength ? parseInt(contentLength, 10) : 0
-
-        if (downloadRes.body && total > 0) {
-          // Stream with progress
-          const reader = downloadRes.body.getReader()
-          const chunks: BlobPart[] = []
-          let loaded = 0
-
-          while (true) {
-            const { done, value } = await reader.read()
-            if (done) break
-            chunks.push(value)
-            loaded += value.length
-            setDownloadProgress({
-              percent: Math.round((loaded / total) * 100),
-              loaded,
-              total,
-            })
-          }
-
-          const blob = new Blob(chunks, { type: data.contentType || 'video/mp4' })
-          const blobUrl = URL.createObjectURL(blob)
-          const link = document.createElement('a')
-          link.href = blobUrl
-          link.download = data.filename || `youtube-${videoInfo.id}.${selectedFormat.format}`
-          document.body.appendChild(link)
-          link.click()
-          document.body.removeChild(link)
-          URL.revokeObjectURL(blobUrl)
-        } else {
-          // Fallback: direct blob download without progress
-          const blob = await downloadRes.blob()
-          const blobUrl = URL.createObjectURL(blob)
-          const link = document.createElement('a')
-          link.href = blobUrl
-          link.download = data.filename || `youtube-${videoInfo.id}.${selectedFormat.format}`
-          document.body.appendChild(link)
-          link.click()
-          document.body.removeChild(link)
-          URL.revokeObjectURL(blobUrl)
-        }
+        const blob = new Blob(chunks, {
+          type: selectedFormat.type === 'audio' ? `audio/${selectedFormat.format}` : `video/${selectedFormat.format}`,
+        })
+        const blobUrl = URL.createObjectURL(blob)
+        const link = document.createElement('a')
+        link.href = blobUrl
+        link.download = filename
+        document.body.appendChild(link)
+        link.click()
+        document.body.removeChild(link)
+        URL.revokeObjectURL(blobUrl)
+      } else {
+        // Fallback: blob download without progress
+        const blob = await res.blob()
+        const blobUrl = URL.createObjectURL(blob)
+        const link = document.createElement('a')
+        link.href = blobUrl
+        link.download = filename
+        document.body.appendChild(link)
+        link.click()
+        document.body.removeChild(link)
+        URL.revokeObjectURL(blobUrl)
       }
     } catch (err: any) {
       setError(err.message || 'Download failed. Please try again.')
