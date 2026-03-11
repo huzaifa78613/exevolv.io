@@ -26,6 +26,7 @@ const footerLinks = {
     { name: 'Cookie Policy', href: '/cookie-policy' },
     { name: 'Refund Policy', href: '/refund-policy' },
     { name: 'Disclaimer', href: '/disclaimer' },
+    { name: 'DMCA Policy', href: '/dmca' },
   ],
 }
 
