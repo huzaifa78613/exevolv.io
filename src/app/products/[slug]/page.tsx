@@ -281,7 +281,7 @@ export default function ProductPage({ params }: Props) {
       {/* Quick Links */}
       <section className="py-12 bg-dark-50 dark:bg-dark-900">
         <div className="container-custom">
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-4">
             <Link 
               href={`/products/${product.slug}/documentation`}
               className="card card-hover p-4 flex items-center gap-3 group"
@@ -341,6 +341,23 @@ export default function ProductPage({ params }: Props) {
               </div>
               <ChevronRight className="w-4 h-4 text-dark-400" />
             </Link>
+
+            {product.category === 'android-app' && (
+              <Link 
+                href={`/products/${product.slug}/delete-account`}
+                className="card card-hover p-4 flex items-center gap-3 group border-red-100 dark:border-red-900/30"
+              >
+                <div className="w-10 h-10 bg-red-50 dark:bg-red-900/20 rounded-lg flex items-center justify-center text-red-500">
+                  <Icons.Trash2 className="w-5 h-5" />
+                </div>
+                <div className="flex-1">
+                  <span className="font-medium text-dark-900 dark:text-white text-sm group-hover:text-red-500 transition-colors">
+                    Delete Account
+                  </span>
+                </div>
+                <ChevronRight className="w-4 h-4 text-dark-400" />
+              </Link>
+            )}
           </div>
         </div>
       </section>

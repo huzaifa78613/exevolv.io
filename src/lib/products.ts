@@ -80,38 +80,48 @@ export const products: Product[] = [
     name: 'QuizMaster AI',
     slug: 'quizmaster-ai',
     tagline: 'Instant Quiz Solver – Your Intelligent Study Companion',
-    description: 'QuizMaster AI is a powerful mobile application designed to help you solve quizzes instantly. Simply scan any question on your screen or from your camera, and our advanced AI will provide detailed solutions with comprehensive explanations.',
-    category: 'android-app',
+    description: 'Transform the way you approach online quizzes and multiple-choice questions with QuizMaster AI. Our advanced artificial intelligence technology scans your screen, extracts questions, and provides accurate answers with comprehensive explanations in seconds.',
+    category: 'chrome-extension',
     icon: '/images/products/quizmaster-ai-icon.png',
     screenshots: ['/images/products/quizmaster-ai-banner.png'],
     features: [
       {
         title: 'Scan and Solve',
-        description: 'Capture any quiz using your camera or floating screen capture widget for instant AI solutions.',
+        description: 'Capture any quiz or test on your screen with a single click. AI-powered OCR extracts all visible questions instantly.',
         icon: 'Scan'
       },
       {
-        title: 'Cross-Device Sync',
-        description: 'Sign in with Google to automatically save and access your quiz history on any device.',
-        icon: 'Cloud'
+        title: 'Instant Answers',
+        description: 'Receive correct answers within seconds powered by state-of-the-art language models.',
+        icon: 'Zap'
       },
       {
-        title: 'Smart AI Processing',
-        description: 'Powered by Groq AI and Google ML Kit for accurate, real-time text extraction and answers.',
-        icon: 'Bot'
+        title: 'Detailed Explanations',
+        description: 'Understand not just what the answer is, but why it\'s correct with clear explanations.',
+        icon: 'BookOpen'
       },
       {
-        title: 'Multi-Tasking Overlay',
-        description: 'Floating solver button provides a seamless experience without leaving your current app.',
-        icon: 'Layers'
+        title: 'AI Assistant',
+        description: 'Access an intelligent chat interface 24/7 for questions, clarification, or study guidance.',
+        icon: 'MessageSquare'
+      },
+      {
+        title: 'Smart Persistence',
+        description: 'Your scan results remain visible until you perform a new scan.',
+        icon: 'Save'
+      },
+      {
+        title: 'Privacy First',
+        description: 'All processing happens through secure encrypted connections. No personal data stored.',
+        icon: 'Shield'
       }
     ],
-    storeUrl: 'https://play.google.com/store/apps/details?id=com.exevolv.quizmasterai',
-    storeId: 'com.exevolv.quizmasterai',
+    storeUrl: 'https://chromewebstore.google.com/detail/quizmaster-ai-%E2%80%93-instant-q/baeiclpjplbiebkghalehgofhmcinnmn',
+    storeId: 'baeiclpjplbiebkghalehgofhmcinnmn',
     rating: 5.0,
     users: '50+',
     version: '1.1.1',
-    lastUpdated: 'May 09, 2026',
+    lastUpdated: 'February 3, 2026',
     developer: 'exevolv.io',
     privacyPolicyUrl: '/products/quizmaster-ai/privacy-policy',
     supportUrl: '/products/quizmaster-ai/documentation'
@@ -268,6 +278,47 @@ export const products: Product[] = [
     developer: 'exevolv.io',
     privacyPolicyUrl: '/products/zeroadsblocker/privacy-policy',
     supportUrl: '/products/zeroadsblocker/documentation'
+  },
+  {
+    id: 'quizmaster-ai-android',
+    name: 'QuizMaster AI App',
+    slug: 'quizmaster-ai-android',
+    tagline: 'Instant Quiz Solver – Android App',
+    description: 'QuizMaster AI is a powerful mobile application designed to help you solve quizzes instantly. Simply scan any question on your screen or from your camera, and our advanced AI will provide detailed solutions with comprehensive explanations.',
+    category: 'android-app',
+    icon: '/images/products/quizmaster-ai-icon.png',
+    screenshots: ['/images/products/quizmaster-ai-banner.png'],
+    features: [
+      {
+        title: 'Scan and Solve',
+        description: 'Capture any quiz using your camera or floating screen capture widget for instant AI solutions.',
+        icon: 'Scan'
+      },
+      {
+        title: 'Cross-Device Sync',
+        description: 'Sign in with Google to automatically save and access your quiz history on any device.',
+        icon: 'Cloud'
+      },
+      {
+        title: 'Smart AI Processing',
+        description: 'Powered by Groq AI and Google ML Kit for accurate, real-time text extraction and answers.',
+        icon: 'Bot'
+      },
+      {
+        title: 'Multi-Tasking Overlay',
+        description: 'Floating solver button provides a seamless experience without leaving your current app.',
+        icon: 'Layers'
+      }
+    ],
+    storeUrl: 'https://play.google.com/store/apps/details?id=com.exevolv.quizmasterai',
+    storeId: 'com.exevolv.quizmasterai',
+    rating: 5.0,
+    users: '50+',
+    version: '1.0.0',
+    lastUpdated: 'May 09, 2026',
+    developer: 'exevolv.io',
+    privacyPolicyUrl: '/products/quizmaster-ai-android/privacy-policy',
+    supportUrl: '/products/quizmaster-ai-android/documentation'
   }
 ]
 
