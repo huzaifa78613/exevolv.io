@@ -60,7 +60,7 @@ export default function PrivacyPolicyPage({ params }: Props) {
               </div>
             </div>
             <p className="text-dark-600 dark:text-dark-400">
-              Last updated: {product.slug === 'quizmaster-ai-android' ? 'May 09, 2026' : 'February 1, 2026'}
+              Last updated: {product.slug === 'quizmaster-ai' ? 'May 09, 2026' : 'February 1, 2026'}
             </p>
           </div>
         </div>
@@ -69,7 +69,7 @@ export default function PrivacyPolicyPage({ params }: Props) {
       <section className="section-padding bg-white dark:bg-dark-950">
         <div className="container-custom">
           <div className="max-w-3xl mx-auto prose dark:prose-invert prose-headings:font-bold prose-a:text-primary">
-            {product.slug === 'quizmaster-ai-android' ? (
+            {product.slug === 'quizmaster-ai' ? (
               <>
                 <p>QuizMaster AI ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, and share information when you use our mobile application, QuizMaster AI - Instant Quiz Solver (the "App").</p>
                 
