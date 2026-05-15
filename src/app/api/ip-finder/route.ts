@@ -2,11 +2,10 @@ import { NextResponse } from 'next/server';
 import mysql from 'mysql2/promise';
 
 const dbConfig = {
-  host: process.env.DB_HOST || 'localhost', // replace with your DB host
-  user: 'u659748479_np',
-  password: 'Business+123!!',
-  // Ensure you set your database name correctly
-  database: process.env.DB_NAME || 'u659748479_db' 
+  host: process.env.DB_HOST || '127.0.0.1', 
+  user: process.env.DB_USER || 'u659748479_np',
+  password: process.env.DB_PASSWORD || 'Business+123!!',
+  database: process.env.DB_NAME || 'u659748479_np' 
 };
 
 export async function POST(req: Request) {
