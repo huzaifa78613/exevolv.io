@@ -203,18 +203,12 @@ export default function HomePage() {
 
             {/* Visual */}
             <div className="relative">
-              <div className="aspect-square bg-gradient-to-br from-primary-100 to-primary-200 dark:from-primary-900/20 dark:to-primary-800/20 rounded-3xl flex items-center justify-center">
-                <div className="text-center p-8">
-                  <div className="w-24 h-24 bg-primary rounded-3xl flex items-center justify-center mx-auto mb-6">
-                    <span className="text-5xl font-bold text-white">e</span>
-                  </div>
-                  <h3 className="text-2xl font-bold text-dark-900 dark:text-white mb-2">
-                    exevolv.io
-                  </h3>
-                  <p className="text-dark-600 dark:text-dark-400">
-                    Evolving Digital Experiences
-                  </p>
-                </div>
+              <div className="aspect-square bg-gradient-to-br from-primary-100 to-primary-200 dark:from-primary-900/20 dark:to-primary-800/20 rounded-3xl flex items-center justify-center overflow-hidden">
+                <img 
+                  src="/Assets/logo.png" 
+                  alt="exevolv.io Logo" 
+                  className="w-2/3 h-2/3 object-contain"
+                />
               </div>
               
               {/* Floating cards */}

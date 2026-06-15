@@ -144,8 +144,8 @@ export default function DocsPage() {
                 href={`/products/${product.slug}/documentation`}
                 className="card card-hover p-6 group"
               >
-                <div className="w-14 h-14 bg-gradient-to-br from-primary-100 to-primary-200 dark:from-primary-900/20 dark:to-primary-800/20 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-105 transition-transform">
-                  <span className="text-xl font-bold text-primary">{product.name.charAt(0)}</span>
+                <div className="w-14 h-14 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-105 transition-transform">
+                  <img src={product.icon} alt={product.name} className="w-full h-full object-contain rounded-2xl" />
                 </div>
                 <h3 className="font-bold text-lg text-dark-900 dark:text-white mb-2 group-hover:text-primary transition-colors">
                   {product.name}

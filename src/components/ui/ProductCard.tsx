@@ -48,8 +48,8 @@ export default function ProductCard({ product, featured = false }: ProductCardPr
       <div className="p-6">
         {/* Icon and Title */}
         <div className="flex items-start gap-4 mb-4">
-          <div className="w-16 h-16 bg-gradient-to-br from-primary-100 to-primary-200 rounded-2xl flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
-            <span className="text-2xl font-bold text-primary">{product.name.charAt(0)}</span>
+          <div className="w-16 h-16 flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
+            <img src={product.icon} alt={`${product.name} Icon`} className="w-full h-full object-contain rounded-2xl" />
           </div>
           <div className="flex-1 min-w-0">
             <h3 className="font-bold text-xl text-dark-900 dark:text-white mb-1 group-hover:text-primary transition-colors">

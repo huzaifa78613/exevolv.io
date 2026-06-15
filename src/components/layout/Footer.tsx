@@ -67,13 +67,12 @@ export default function Footer() {
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8">
           {/* Brand */}
           <div className="col-span-2">
-            <Link href="/" className="flex items-center gap-2 mb-4">
-              <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center">
-                <span className="text-white font-bold text-xl">e</span>
-              </div>
-              <span className="font-display font-bold text-xl">
-                exevolv<span className="text-primary">.io</span>
-              </span>
+            <Link href="/" className="flex items-center gap-2 mb-4 group">
+              <img 
+                src="/Assets/logo.png" 
+                alt="Exevolv Logo" 
+                className="h-10 w-auto object-contain transition-transform group-hover:scale-105" 
+              />
             </Link>
             <p className="text-dark-400 text-sm mb-6 max-w-xs">
               Building innovative browser extensions and applications that enhance your digital experience.
