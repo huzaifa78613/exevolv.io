@@ -31,8 +31,8 @@ export const products: Product[] = [
     tagline: 'Safe, Secure, Private Proxy Connector',
     description: 'ProxyConnector Pro is a powerful and secure proxy management extension designed to protect your online privacy. It allows you to easily connect, switch, and manage proxies while preventing IP leaks with built-in WebRTC protection. With automatic timezone matching and a smooth user experience, it ensures safe and reliable browsing every time.',
     category: 'chrome-extension',
-    icon: '/images/products/ip-filter-exchange-icon.png',
-    screenshots: ['/images/products/ip-filter-exchange-banner.png'],
+    icon: '/assets/products/proxyconnectorpro/icon.png',
+    screenshots: ['/assets/products/proxyconnectorpro/banner.png'],
     features: [
       {
         title: 'Proxy Management',
@@ -82,8 +82,8 @@ export const products: Product[] = [
     tagline: 'Earn Real UC by completing tasks, surveys and solving PUBG quizes.',
     description: 'UC Max is a mobile app that allows users to earn UC by completing various tasks, participating in surveys, and solving quizzes related to PUBG. It\'s a fun and engaging way to get in-game currency.',
     category: 'android-app',
-    icon: '/images/products/uc-max-icon.png',
-    screenshots: ['/images/products/uc-max-banner.png'],
+    icon: '/assets/products/uc-max/icon.png',
+    screenshots: ['/assets/products/uc-max/banner.png'],
     features: [
       {
         title: 'Earn UC',
@@ -128,8 +128,8 @@ export const products: Product[] = [
     tagline: 'Instant Quiz Solver – Your Intelligent Study Companion',
     description: 'Transform the way you approach online quizzes and multiple-choice questions with QuizMaster AI. Our advanced artificial intelligence technology scans your screen, extracts questions, and provides accurate answers with comprehensive explanations in seconds.',
     category: 'chrome-extension',
-    icon: '/images/products/quizmaster-ai-icon.png',
-    screenshots: ['/images/products/quizmaster-ai-banner.png'],
+    icon: '/assets/products/quizmaster-ai/icon.png',
+    screenshots: ['/assets/products/quizmaster-ai/banner.png'],
     features: [
       {
         title: 'Scan and Solve',
@@ -179,8 +179,8 @@ export const products: Product[] = [
     tagline: 'Sound Booster – Boost Volume Up to 600%',
     description: 'Pulser Pro is a powerful sound booster Chrome extension that amplifies audio up to 600% on any website. Whether you\'re watching YouTube, streaming on Netflix, or attending online meetings, Pulser Pro delivers crystal-clear, ultra-loud sound with a sleek and intuitive interface. Fine-tune volume, bass, and audio profiles per tab — all with zero lag.',
     category: 'chrome-extension',
-    icon: '/images/products/pulser-pro-icon.png',
-    screenshots: ['/images/products/pulser-pro-banner.png'],
+    icon: '/assets/products/pulser-pro/icon.png',
+    screenshots: ['/assets/products/pulser-pro/banner.png'],
     features: [
       {
         title: '600% Volume Boost',
@@ -230,8 +230,8 @@ export const products: Product[] = [
     tagline: 'Block All Ads, Instantly',
     description: 'ZeroAds is a lightweight and powerful ad blocker designed to give you a cleaner, faster, and more private browsing experience. It blocks video ads on YouTube and streaming platforms, display and banner ads, pop-ups, overlay notifications, and tracking scripts that monitor your online activity — all with zero configuration needed.',
     category: 'chrome-extension',
-    icon: '/images/products/zeroadsblocker-icon.png',
-    screenshots: ['/images/products/zeroadsblocker-banner.png'],
+    icon: '/assets/products/zeroadsblocker/icon.png',
+    screenshots: ['/assets/products/zeroadsblocker/banner.png'],
     features: [
       {
         title: 'Block All Ads',
@@ -281,8 +281,8 @@ export const products: Product[] = [
     tagline: 'Instant Quiz Solver – Android App',
     description: 'QuizMaster AI is a powerful mobile application designed to help you solve quizzes instantly. Simply scan any question on your screen or from your camera, and our advanced AI will provide detailed solutions with comprehensive explanations.',
     category: 'android-app',
-    icon: '/images/products/quizmaster-ai-icon.png',
-    screenshots: ['/images/products/quizmaster-ai-banner.png'],
+    icon: '/assets/products/quizmaster-ai-android/icon.png',
+    screenshots: ['/assets/products/quizmaster-ai-android/banner.png'],
     features: [
       {
         title: 'Scan and Solve',
