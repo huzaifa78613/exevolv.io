@@ -13,12 +13,10 @@ const navigation = [
     children: [
       { name: 'ProxyConnector Pro', href: '/products/ip-filter-exchange' },
       { name: 'QuizMaster AI', href: '/products/quizmaster-ai' },
-      { name: 'TaleemSpot Notes', href: '/products/taleemspot-notes' },
       { name: 'Pulser Pro', href: '/products/pulser-pro' },
       { name: 'ZeroAds', href: '/products/zeroadsblocker' },
     ]
   },
-  { name: 'Services', href: '/services' },
   { name: 'About', href: '/about' },
   { name: 'Blog', href: '/blog' },
   { name: 'Docs', href: '/docs' },
@@ -120,8 +118,8 @@ export default function Navbar() {
             </button>
 
             {/* CTA Button */}
-            <Link href="/products" className="hidden md:inline-flex btn-primary text-sm py-2 px-4">
-              Get Started
+            <Link href="/services" className="hidden md:inline-flex btn-primary text-sm py-2 px-4">
+              Get Services
             </Link>
 
             {/* Mobile Menu Button */}
@@ -167,11 +165,11 @@ export default function Navbar() {
             ))}
             <div className="pt-4">
               <Link 
-                href="/products" 
+                href="/services" 
                 onClick={() => setIsOpen(false)}
                 className="btn-primary w-full text-center"
               >
-                Get Started
+                Get Services
               </Link>
             </div>
           </div>

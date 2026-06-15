@@ -6,7 +6,7 @@ import { Chrome, Smartphone, Globe } from 'lucide-react'
 
 export const metadata: Metadata = {
   title: 'Products - Browser Extensions & Apps',
-  description: 'Explore our collection of browser extensions and applications. ProxyConnector Pro, QuizMaster AI, TaleemSpot Notes and more.',
+  description: 'Explore our collection of browser extensions and applications. ProxyConnector Pro, QuizMaster AI, and more.',
   openGraph: {
     title: 'Products - exevolv.io',
     description: 'Explore our collection of browser extensions and applications.',

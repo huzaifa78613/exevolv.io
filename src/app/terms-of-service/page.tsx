@@ -49,7 +49,6 @@ export default function TermsOfServicePage() {
             <ul>
               <li>ProxyConnector Pro - Proxy management extension</li>
               <li>QuizMaster AI - AI-powered quiz solving extension</li>
-              <li>TaleemSpot Notes - Educational study app</li>
             </ul>
             <p>
               We reserve the right to modify, suspend, or discontinue any part of our services at any time.

@@ -62,12 +62,6 @@ const testimonials = [
     role: "IT Professional",
     rating: 5,
   },
-  {
-    quote: "TaleemSpot Notes made my board exam preparation so much easier. Highly recommended!",
-    author: "Ahmed Khan",
-    role: "Student",
-    rating: 5,
-  },
 ]
 
 export default function HomePage() {

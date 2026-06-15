@@ -1,7 +1,8 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
 import Breadcrumbs from '@/components/ui/Breadcrumbs'
-import { Mail, MapPin, MessageSquare, Send, Clock, ExternalLink } from 'lucide-react'
+import { Mail, MapPin, MessageSquare, Clock, ExternalLink } from 'lucide-react'
+import ContactFormGeneral from '@/components/ui/ContactFormGeneral'
 
 export const metadata: Metadata = {
   title: 'Contact Us',
@@ -17,8 +18,8 @@ const contactMethods = [
     icon: <Mail className="w-6 h-6" />,
     title: 'Email',
     description: 'Send us an email anytime',
-    value: 'hello@exevolv.io',
-    href: 'mailto:hello@exevolv.io',
+    value: 'huzaifa@exevolv.io',
+    href: 'mailto:huzaifa@exevolv.io',
   },
   {
     icon: <MessageSquare className="w-6 h-6" />,
@@ -129,7 +130,7 @@ export default function ContactPage() {
                     <ExternalLink className="w-5 h-5" />
                   </a>
                   <a
-                    href="https://linkedin.com/company/exevolv-io"
+                    href="https://www.linkedin.com/in/mhuxaifa/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-10 h-10 bg-dark-100 dark:bg-dark-800 rounded-lg flex items-center justify-center text-dark-600 hover:text-primary hover:bg-primary-50 dark:hover:bg-primary-900/20 transition-colors"
@@ -142,119 +143,7 @@ export default function ContactPage() {
 
             {/* Contact Form */}
             <div className="lg:col-span-2">
-              <div className="card p-8">
-                <h2 className="text-2xl font-bold text-dark-900 dark:text-white mb-6">
-                  Send us a Message
-                </h2>
-                
-                <form action="https://api.web3forms.com/submit" method="POST" className="space-y-6">
-                  <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY" />
-                  <input type="hidden" name="subject" value="New Contact Form Submission - exevolv.io" />
-                  <input type="hidden" name="from_name" value="exevolv.io Contact Form" />
-                  <div className="grid sm:grid-cols-2 gap-6">
-                    <div>
-                      <label htmlFor="name" className="block text-sm font-medium text-dark-700 dark:text-dark-300 mb-2">
-                        Your Name *
-                      </label>
-                      <input
-                        type="text"
-                        id="name"
-                        name="name"
-                        required
-                        className="input-field"
-                        placeholder="John Doe"
-                      />
-                    </div>
-                    <div>
-                      <label htmlFor="email" className="block text-sm font-medium text-dark-700 dark:text-dark-300 mb-2">
-                        Email Address *
-                      </label>
-                      <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        required
-                        className="input-field"
-                        placeholder="john@example.com"
-                      />
-                    </div>
-                  </div>
-
-                  <div>
-                    <label htmlFor="subject" className="block text-sm font-medium text-dark-700 dark:text-dark-300 mb-2">
-                      Subject *
-                    </label>
-                    <select
-                      id="subject"
-                      name="subject"
-                      required
-                      className="input-field"
-                    >
-                      <option value="">Select a subject</option>
-                      <option value="general">General Inquiry</option>
-                      <option value="support">Product Support</option>
-                      <option value="bug">Bug Report</option>
-                      <option value="feature">Feature Request</option>
-                      <option value="partnership">Partnership</option>
-                      <option value="other">Other</option>
-                    </select>
-                  </div>
-
-                  <div>
-                    <label htmlFor="product" className="block text-sm font-medium text-dark-700 dark:text-dark-300 mb-2">
-                      Related Product
-                    </label>
-                    <select
-                      id="product"
-                      name="product"
-                      className="input-field"
-                    >
-                      <option value="">Select a product (optional)</option>
-                      <option value="proxyconnector-pro">ProxyConnector Pro</option>
-                      <option value="quizmaster-ai">QuizMaster AI</option>
-                      <option value="taleemspot-notes">TaleemSpot Notes</option>
-                      <option value="pulser-pro">Pulser Pro</option>
-                      <option value="zeroadsblocker">ZeroAds</option>
-                    </select>
-                  </div>
-
-                  <div>
-                    <label htmlFor="message" className="block text-sm font-medium text-dark-700 dark:text-dark-300 mb-2">
-                      Message *
-                    </label>
-                    <textarea
-                      id="message"
-                      name="message"
-                      required
-                      rows={6}
-                      className="input-field resize-none"
-                      placeholder="Tell us how we can help you..."
-                    />
-                  </div>
-
-                  <div className="flex items-start gap-3">
-                    <input
-                      type="checkbox"
-                      id="privacy"
-                      name="privacy"
-                      required
-                      className="mt-1 w-4 h-4 text-primary border-dark-300 rounded focus:ring-primary"
-                    />
-                    <label htmlFor="privacy" className="text-sm text-dark-600 dark:text-dark-400">
-                      I agree to the{' '}
-                      <Link href="/privacy-policy" className="text-primary hover:underline">
-                        Privacy Policy
-                      </Link>{' '}
-                      and consent to being contacted regarding my inquiry.
-                    </label>
-                  </div>
-
-                  <button type="submit" className="btn-primary w-full sm:w-auto">
-                    <Send className="w-5 h-5 mr-2" />
-                    Send Message
-                  </button>
-                </form>
-              </div>
+              <ContactFormGeneral />
             </div>
           </div>
         </div>

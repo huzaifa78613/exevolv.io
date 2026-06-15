@@ -74,28 +74,6 @@ const faqCategories = [
     ]
   },
   {
-    id: 'taleemspot-notes',
-    name: 'TaleemSpot Notes',
-    faqs: [
-      {
-        question: 'What is TaleemSpot Notes?',
-        answer: 'TaleemSpot Notes is an Android app for Pakistani students preparing for Matric and Inter exams. It provides past papers, notes, MCQ tests, and study resources for all Punjab BISE boards.'
-      },
-      {
-        question: 'Which boards are supported?',
-        answer: 'We support all Punjab BISE boards including Lahore, Gujranwala, Rawalpindi, Faisalabad, Sargodha, Sahiwal, Multan, Bahawalpur, DG Khan, Federal Board (FBISE), and AJK Board.'
-      },
-      {
-        question: 'Can I use it offline?',
-        answer: 'Yes! TaleemSpot Notes has an offline mode. Download the content you need while connected to the internet, and you can access it anytime without a connection.'
-      },
-      {
-        question: 'Is the app free?',
-        answer: 'Yes, the app is completely free with access to all study materials including past papers, notes, MCQ tests, and more.'
-      },
-    ]
-  },
-  {
     id: 'pulser-pro',
     name: 'Pulser Pro',
     faqs: [

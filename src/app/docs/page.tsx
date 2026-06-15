@@ -21,7 +21,6 @@ const quickLinks = [
     links: [
       { name: 'ProxyConnector Pro Guide', href: '/products/proxyconnector-pro/documentation' },
       { name: 'QuizMaster AI Guide', href: '/products/quizmaster-ai/documentation' },
-      { name: 'TaleemSpot Notes Guide', href: '/products/taleemspot-notes/documentation' },
     ]
   },
   {

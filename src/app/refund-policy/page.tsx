@@ -41,7 +41,6 @@ export default function RefundPolicyPage() {
             <ul>
               <li>ProxyConnector Pro browser extension</li>
               <li>QuizMaster AI browser extension</li>
-              <li>TaleemSpot Notes mobile app</li>
             </ul>
             <p>
               Since these products are free, no refunds are applicable.

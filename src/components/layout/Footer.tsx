@@ -5,7 +5,6 @@ const footerLinks = {
   products: [
     { name: 'ProxyConnector Pro', href: '/products/ip-filter-exchange' },
     { name: 'QuizMaster AI', href: '/products/quizmaster-ai' },
-    { name: 'TaleemSpot Notes', href: '/products/taleemspot-notes' },
     { name: 'Pulser Pro', href: '/products/pulser-pro' },
     { name: 'ZeroAds', href: '/products/zeroadsblocker' },
   ],
@@ -33,8 +32,8 @@ const footerLinks = {
 
 const socialLinks = [
   { name: 'GitHub', icon: Github, href: 'https://github.com/huzaifa78613' },
-  { name: 'LinkedIn', icon: Linkedin, href: 'https://linkedin.com/company/exevolv-io' },
-  { name: 'Email', icon: Mail, href: 'mailto:hello@exevolv.io' },
+  { name: 'LinkedIn', icon: Linkedin, href: 'https://www.linkedin.com/in/mhuxaifa/' },
+  { name: 'Email', icon: Mail, href: 'mailto:huzaifa@exevolv.io' },
 ]
 
 export default function Footer() {
@@ -52,7 +51,7 @@ export default function Footer() {
             </p>
             <div className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto items-center justify-center">
               <a 
-                href="mailto:hello@exevolv.io?subject=Newsletter Subscription&body=I would like to subscribe to the exevolv.io newsletter."
+                href="mailto:huzaifa@exevolv.io?subject=Newsletter Subscription&body=I would like to subscribe to the exevolv.io newsletter."
                 className="btn-primary whitespace-nowrap"
               >
                 <Mail className="w-4 h-4 mr-2" />
@@ -154,9 +153,9 @@ export default function Footer() {
         {/* Contact Info */}
         <div className="mt-12 pt-8 border-t border-dark-700">
           <div className="flex flex-wrap gap-6 text-sm text-dark-400">
-            <a href="mailto:hello@exevolv.io" className="flex items-center gap-2 hover:text-primary transition-colors">
+            <a href="mailto:huzaifa@exevolv.io" className="flex items-center gap-2 hover:text-primary transition-colors">
               <Mail className="w-4 h-4" />
-              hello@exevolv.io
+              huzaifa@exevolv.io
             </a>
           </div>
         </div>
