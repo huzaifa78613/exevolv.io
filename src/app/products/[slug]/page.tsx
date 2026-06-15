@@ -61,9 +61,9 @@ export default function ProductPage({ params }: Props) {
             ]} 
           />
           
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="grid lg:grid-cols-12 gap-12 items-center">
             {/* Content */}
-            <div>
+            <div className="lg:col-span-5 xl:col-span-4">
               {/* Category Badge */}
               <span className="badge-primary mb-4">
                 {product.category === 'chrome-extension' && 'Chrome Extension'}
@@ -117,7 +117,7 @@ export default function ProductPage({ params }: Props) {
             </div>
 
             {/* Product Visual */}
-            <div className="relative">
+            <div className="relative lg:col-span-7 xl:col-span-8">
               {product.screenshots && product.screenshots.length > 0 ? (
                 <ImageSlider images={product.screenshots} altText={product.name} />
               ) : (

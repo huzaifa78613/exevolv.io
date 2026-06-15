@@ -22,7 +22,7 @@ export default function ImageSlider({ images, altText }: ImageSliderProps) {
   if (!images || images.length === 0) return null
 
   return (
-    <div className="relative aspect-video rounded-3xl overflow-hidden shadow-2xl shadow-primary/20 group">
+    <div className="relative w-full h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px] rounded-3xl overflow-hidden shadow-2xl shadow-primary/20 group">
       <img 
         src={images[currentIndex]} 
         alt={`${altText} - Screenshot ${currentIndex + 1}`}
