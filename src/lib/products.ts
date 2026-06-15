@@ -173,57 +173,6 @@ export const products: Product[] = [
     supportUrl: '/products/quizmaster-ai/documentation'
   },
   {
-    id: 'taleemspot-notes',
-    name: 'TaleemSpot Notes',
-    slug: 'taleemspot-notes',
-    tagline: 'Complete Matric & Inter Study App',
-    description: 'Prepare smarter for Matric & Inter (Class 9, 10, 11, 12) with Taleem Spot – Pakistan\'s #1 BISE study app. Access free Notes, Past Papers, Guess Papers, Textbooks & Practice Tests – all in one place. Our goal is to make exam preparation smarter and stress-free with a simple, user-friendly, and engaging study experience.',
-    category: 'android-app',
-    icon: '/images/products/quizmaster-ai-icon.png',
-    screenshots: ['/images/products/quizmaster-ai-banner.png'],
-    features: [
-      {
-        title: 'Past Papers',
-        description: 'Complete collection of past papers from 2015-2025 for all subjects.',
-        icon: 'FileText'
-      },
-      {
-        title: 'MCQ Practice Tests',
-        description: 'Interactive quiz system with MCQ practice tests for exam preparation.',
-        icon: 'CheckSquare'
-      },
-      {
-        title: 'Complete Textbooks',
-        description: 'Access complete textbooks and study notes for all subjects.',
-        icon: 'Book'
-      },
-      {
-        title: 'AI Study Assistant',
-        description: 'AI-powered study assistant and math solver for instant help.',
-        icon: 'Bot'
-      },
-      {
-        title: 'Offline Mode',
-        description: 'Study offline without internet connection.',
-        icon: 'WifiOff'
-      },
-      {
-        title: 'Progress Tracking',
-        description: 'Track your study progress with performance analytics.',
-        icon: 'TrendingUp'
-      }
-    ],
-    storeUrl: 'https://play.google.com/store/apps/details?id=com.taleemspot.notes&hl=en',
-    storeId: 'com.taleemspot.notes',
-    rating: 4.8,
-    users: '100+',
-    version: '1.0.0',
-    lastUpdated: 'December 7, 2025',
-    developer: 'Creative Taleem Technologies',
-    privacyPolicyUrl: '/products/taleemspot-notes/privacy-policy',
-    supportUrl: '/products/taleemspot-notes/documentation'
-  },
-  {
     id: 'pulser-pro',
     name: 'Pulser Pro',
     slug: 'pulser-pro',
