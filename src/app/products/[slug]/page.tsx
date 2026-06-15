@@ -2,6 +2,7 @@ import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import Breadcrumbs from '@/components/ui/Breadcrumbs'
+import ImageSlider from '@/components/ui/ImageSlider'
 import { ChromeInstallButton, PlayStoreButton, EdgeInstallButton, FirefoxInstallButton } from '@/components/ui/StoreButtons'
 import { products, getProductBySlug } from '@/lib/products'
 import * as Icons from 'lucide-react'
@@ -118,13 +119,7 @@ export default function ProductPage({ params }: Props) {
             {/* Product Visual */}
             <div className="relative">
               {product.screenshots && product.screenshots.length > 0 ? (
-                <div className="aspect-video rounded-3xl overflow-hidden shadow-2xl shadow-primary/20">
-                  <img 
-                    src={product.screenshots[0]} 
-                    alt={`${product.name} - Product Screenshot`}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
+                <ImageSlider images={product.screenshots} altText={product.name} />
               ) : (
                 <div className="aspect-video bg-gradient-to-br from-primary-100 to-primary-200 dark:from-primary-900/30 dark:to-primary-800/30 rounded-3xl flex items-center justify-center shadow-2xl shadow-primary/20">
                   <div className="text-center p-8">
