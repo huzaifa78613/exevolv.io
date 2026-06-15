@@ -18,6 +18,7 @@ const navigation = [
       { name: 'ZeroAds', href: '/products/zeroadsblocker' },
     ]
   },
+  { name: 'Services', href: '/services' },
   { name: 'About', href: '/about' },
   { name: 'Blog', href: '/blog' },
   { name: 'Docs', href: '/docs' },
