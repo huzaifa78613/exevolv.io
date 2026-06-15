@@ -87,7 +87,7 @@ export default function ServicesPage() {
               </div>
               
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-dark-900 dark:text-white mb-6 leading-tight">
-                Hi, I'm <span className="text-primary">Md Huzaifa</span>
+                Hi, I&apos;m <span className="text-primary">Md Huzaifa</span>
               </h1>
               
               <p className="text-xl md:text-2xl text-dark-600 dark:text-dark-300 font-medium mb-6">
@@ -166,7 +166,7 @@ export default function ServicesPage() {
               My Core Expertise
             </h2>
             <p className="text-lg text-dark-600 dark:text-dark-400">
-              Delivering industry-standard solutions to enhance your app's performance, revenue, and compliance.
+              Delivering industry-standard solutions to enhance your app&apos;s performance, revenue, and compliance.
             </p>
           </div>
 
@@ -204,7 +204,7 @@ export default function ServicesPage() {
               {/* Contact Info */}
               <div className="md:col-span-2 bg-primary p-10 text-white flex flex-col justify-between">
                 <div>
-                  <h3 className="text-3xl font-bold mb-4">Let's Talk</h3>
+                  <h3 className="text-3xl font-bold mb-4">Let&apos;s Talk</h3>
                   <p className="text-primary-100 mb-10 leading-relaxed">
                     Have a project in mind, facing a tough app bug, or dealing with a policy violation? Reach out today!
                   </p>
