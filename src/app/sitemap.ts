@@ -11,6 +11,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const staticPages: { path: string; changeFrequency: ChangeFrequency; priority: number }[] = [
     { path: '', changeFrequency: 'weekly', priority: 1 },
     { path: '/products', changeFrequency: 'weekly', priority: 0.9 },
+    { path: '/services', changeFrequency: 'weekly', priority: 0.9 },
     { path: '/about', changeFrequency: 'monthly', priority: 0.8 },
     { path: '/blog', changeFrequency: 'weekly', priority: 0.8 },
     { path: '/docs', changeFrequency: 'weekly', priority: 0.8 },
@@ -21,6 +22,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: '/cookie-policy', changeFrequency: 'monthly', priority: 0.5 },
     { path: '/refund-policy', changeFrequency: 'monthly', priority: 0.5 },
     { path: '/disclaimer', changeFrequency: 'monthly', priority: 0.5 },
+    { path: '/dmca', changeFrequency: 'monthly', priority: 0.5 },
   ]
 
   const staticUrls: MetadataRoute.Sitemap = staticPages.map((page) => ({
