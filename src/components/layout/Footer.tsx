@@ -19,7 +19,7 @@ const footerLinks = {
     { name: 'Documentation', href: '/docs' },
     { name: 'FAQs', href: '/faqs' },
     { name: 'Support', href: '/contact' },
-    { name: 'Changelog', href: '/blog' },
+    { name: 'Blog', href: '/blog' },
   ],
   legal: [
     { name: 'Privacy Policy', href: '/privacy-policy' },
@@ -151,15 +151,6 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Contact Info */}
-        <div className="mt-12 pt-8 border-t border-dark-700">
-          <div className="flex flex-wrap gap-6 text-sm text-dark-400">
-            <a href="mailto:huzaifa@exevolv.io" className="flex items-center gap-2 hover:text-primary transition-colors">
-              <Mail className="w-4 h-4" />
-              huzaifa@exevolv.io
-            </a>
-          </div>
-        </div>
       </div>
 
       {/* Copyright */}

@@ -62,6 +62,12 @@ const testimonials = [
     role: "IT Professional",
     rating: 5,
   },
+  {
+    quote: "1Click PDF Maker is a lifesaver for office documents. The formatting remains 100% accurate, and it works completely offline!",
+    author: "Michael Brown",
+    role: "Project Manager",
+    rating: 5,
+  },
 ]
 
 export default function HomePage() {
