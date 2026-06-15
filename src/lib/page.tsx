@@ -1,3 +1,5 @@
+'use client'
+
 import { 
   Mail, 
   Smartphone, 
@@ -10,11 +12,6 @@ import {
   Briefcase,
   CheckCircle2
 } from 'lucide-react'
-
-export const metadata = {
-  title: 'Services & Portfolio - Md Huzaifa',
-  description: 'Professional Android Developer, Play Console Policy Fixer, and Web App Monetization Expert. Hire me for commercial apps, ad mediation, and bug fixing.',
-}
 
 export default function ServicesPage() {
   const services = [
