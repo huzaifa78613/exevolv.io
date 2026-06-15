@@ -60,12 +60,11 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 group">
-            <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center group-hover:scale-105 transition-transform">
-              <span className="text-white font-bold text-xl">e</span>
-            </div>
-            <span className="font-display font-bold text-xl text-dark-900 dark:text-white">
-              exevolv<span className="text-primary">.io</span>
-            </span>
+            <img 
+              src="/Assets/logo.png" 
+              alt="Exevolv Logo" 
+              className="h-10 w-auto object-contain transition-transform group-hover:scale-105" 
+            />
           </Link>
 
           {/* Desktop Navigation */}
