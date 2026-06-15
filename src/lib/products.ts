@@ -337,6 +337,62 @@ export const products: Product[] = [
     developer: 'exevolv.io',
     privacyPolicyUrl: '/products/quizmaster-ai-android/privacy-policy',
     supportUrl: '/products/quizmaster-ai-android/documentation'
+  },
+  {
+    id: 'oneclickpdfmaker',
+    name: '1Click PDF Maker',
+    slug: 'oneclickpdfmaker',
+    tagline: '1Click PDF Maker – The Only PDF Toolkit You’ll Ever Need!',
+    description: 'Designed by Huzaifa, this app isn’t just another utility; it’s a professional-grade workspace built to respect your time and your privacy. With a clean, familiar interface inspired by WhatsApp, you don’t need to be a tech expert to create, edit, or convert documents. Everything is just "1 Click" away!',
+    category: 'android-app',
+    icon: '/Assets/1ClickPDFMaker/logo.png',
+    screenshots: [
+      '/Assets/1ClickPDFMaker/graphic1.png',
+      '/Assets/1ClickPDFMaker/image1.jpeg',
+      '/Assets/1ClickPDFMaker/image2.jpeg',
+      '/Assets/1ClickPDFMaker/image3.jpeg'
+    ],
+    features: [
+      {
+        title: 'Office Conversion',
+        description: 'Convert Word (.docx), Excel (.xlsx), and PowerPoint (.pptx) with fonts and layout preserved.',
+        icon: 'FileText'
+      },
+      {
+        title: 'Image-to-PDF',
+        description: 'Select multiple images and arrange them using our premium drag-and-drop workflow.',
+        icon: 'Image'
+      },
+      {
+        title: 'Smart AI Scanner',
+        description: 'AI-powered camera scanner automatically detects edges, removes shadows, and applies filters.',
+        icon: 'Scan'
+      },
+      {
+        title: 'Rich Text Editor',
+        description: 'Built-in Text-to-PDF editor with support for headings, bold, italics, and alignments.',
+        icon: 'Edit3'
+      },
+      {
+        title: 'Security Toolkit',
+        description: 'Merge PDFs, rotate pages, rename files, and place digital signatures precisely.',
+        icon: 'Lock'
+      },
+      {
+        title: '100% Offline & Private',
+        description: 'Zero data collection. All conversions and edits happen locally on your device.',
+        icon: 'Shield'
+      }
+    ],
+    storeUrl: 'https://play.google.com/store',
+    storeId: '',
+    rating: 5.0,
+    users: '100+',
+    version: '1.0.0',
+    lastUpdated: 'June 15, 2026',
+    developer: 'exevolv.io',
+    privacyPolicyUrl: '/products/oneclickpdfmaker/privacy-policy',
+    supportUrl: '/products/oneclickpdfmaker/documentation'
   }
 ]
 

@@ -7,6 +7,7 @@ const footerLinks = {
     { name: 'QuizMaster AI', href: '/products/quizmaster-ai' },
     { name: 'Pulser Pro', href: '/products/pulser-pro' },
     { name: 'ZeroAds', href: '/products/zeroadsblocker' },
+    { name: '1Click PDF Maker', href: '/products/oneclickpdfmaker' },
   ],
   company: [
     { name: 'About Us', href: '/about' },
