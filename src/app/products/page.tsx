@@ -5,7 +5,7 @@ import ProductsGrid from '@/components/ui/ProductsGrid'
 
 export const metadata: Metadata = {
   title: 'Products - Browser Extensions & Apps',
-  description: 'Explore our collection of browser extensions and applications. ProxyConnector Pro, QuizMaster AI, and more.',
+  description: 'Explore our collection of browser extensions and applications. ProxyConnector Pro, QuizMaster AI, Policy Scan AI, and more.',
   openGraph: {
     title: 'Products - exevolv.io',
     description: 'Explore our collection of browser extensions and applications.',

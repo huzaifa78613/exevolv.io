@@ -21,7 +21,7 @@ import { products } from '@/lib/products'
 
 const stats = [
   { value: '10K+', label: 'Active Users', icon: <Users className="w-6 h-6" /> },
-  { value: '5+', label: 'Products', icon: <Rocket className="w-6 h-6" /> },
+  { value: '7+', label: 'Products', icon: <Rocket className="w-6 h-6" /> },
   { value: '4.8', label: 'Avg Rating', icon: <Star className="w-6 h-6" /> },
   { value: '50+', label: 'Countries', icon: <Globe className="w-6 h-6" /> },
 ]
