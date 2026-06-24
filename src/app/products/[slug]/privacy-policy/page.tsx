@@ -35,6 +35,8 @@ export default function PrivacyPolicyPage({ params }: Props) {
     notFound()
   }
 
+  const isExvPlayer = product.slug === 'exv-player'
+
   return (
     <>
       <section className="gradient-bg py-16 md:py-24">
@@ -136,6 +138,25 @@ export default function PrivacyPolicyPage({ params }: Props) {
               <li><strong>No Browsing History:</strong> We do not track or store your browsing history.</li>
               <li><strong>No Third-Party Tracking:</strong> We do not use any third-party analytics or tracking services.</li>
             </ul>
+
+            {isExvPlayer && (
+              <>
+                <h2>Permissions</h2>
+                <p>
+                  EXV Player only requests permissions that are directly related to media playback and local app settings.
+                  It does not request login, ad, tracking, or unrelated permissions.
+                </p>
+                <ul>
+                  <li><strong>Media Access:</strong> Required to open and play your selected audio or video content.</li>
+                  <li><strong>Storage:</strong> Used to save playback preferences locally on your device.</li>
+                </ul>
+
+                <h2>Ads and Sign-In</h2>
+                <p>
+                  EXV Player does not show ads and does not require an account or login to use.
+                </p>
+              </>
+            )}
 
             {product.slug === 'pulser-pro' && (
               <>

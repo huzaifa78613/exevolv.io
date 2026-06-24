@@ -393,6 +393,54 @@ export const products: Product[] = [
     developer: 'exevolv.io',
     privacyPolicyUrl: '/products/oneclickpdfmaker/privacy-policy',
     supportUrl: '/products/oneclickpdfmaker/documentation'
+  },
+  {
+    id: 'exv-player',
+    name: 'EXV Player',
+    slug: 'exv-player',
+    tagline: 'No ads, no login, only related permissions.',
+    description: 'EXV Player is a clean Android media player built for a simple viewing experience. It has no ads, does not require login, and requests only the permissions needed for playback and related media access.',
+    category: 'android-app',
+    icon: '/images/products/exo-player/logo.png',
+    screenshots: [
+      '/images/products/exo-player/logo.png'
+    ],
+    features: [
+      {
+        title: 'No Ads',
+        description: 'Enjoy a clean playback experience without banner, video, or in-app ads.',
+        icon: 'ShieldOff'
+      },
+      {
+        title: 'No Login Required',
+        description: 'Open the app and start using it immediately without creating an account.',
+        icon: 'UserCheck'
+      },
+      {
+        title: 'Related Permissions Only',
+        description: 'Requests only permissions directly related to media playback and local settings.',
+        icon: 'Shield'
+      },
+      {
+        title: 'Beta Testing Ready',
+        description: 'Join the testing group to review new builds before public release.',
+        icon: 'Users'
+      },
+      {
+        title: 'Lightweight Playback',
+        description: 'Simple controls and a smooth experience designed for quick media access.',
+        icon: 'Play'
+      }
+    ],
+    storeUrl: 'https://play.google.com/store/apps/details?id=app.dev.exvplayer',
+    storeId: 'app.dev.exvplayer',
+    rating: 5.0,
+    users: '1+',
+    version: '0.1.0',
+    lastUpdated: 'June 25, 2026',
+    developer: 'exevolv.io',
+    privacyPolicyUrl: '/products/exv-player/privacy-policy',
+    supportUrl: '/products/exv-player/documentation'
   }
 ]
 

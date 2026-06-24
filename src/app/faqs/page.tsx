@@ -117,6 +117,28 @@ const faqCategories = [
       },
     ]
   },
+  {
+    id: 'exv-player',
+    name: 'EXV Player',
+    faqs: [
+      {
+        question: 'What is EXV Player?',
+        answer: 'EXV Player is a clean Android media player designed for a simple playback experience. It has no ads, does not require login, and only uses permissions related to media playback and local settings.'
+      },
+      {
+        question: 'Does EXV Player show ads?',
+        answer: 'No. EXV Player is built without ads so you can use it without interruptions.'
+      },
+      {
+        question: 'Do I need to create an account?',
+        answer: 'No. EXV Player does not require login or account creation. You can start using it immediately after installation.'
+      },
+      {
+        question: 'How can I join beta testing?',
+        answer: 'You can join the Google Group beta testing program at groups.google.com/g/goplaytest to help test new builds before public release.'
+      },
+    ]
+  },
 ]
 
 function FAQItem({ question, answer }: { question: string; answer: string }) {

@@ -16,6 +16,7 @@ const navigation = [
       { name: 'Pulser Pro', href: '/products/pulser-pro' },
       { name: 'ZeroAds', href: '/products/zeroadsblocker' },
       { name: '1Click PDF Maker', href: '/products/oneclickpdfmaker' },
+      { name: 'EXV Player', href: '/products/exv-player' },
     ]
   },
   { name: 'About', href: '/about' },

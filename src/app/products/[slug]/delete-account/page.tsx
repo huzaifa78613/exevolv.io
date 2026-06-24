@@ -22,6 +22,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return { title: 'Product Not Found' }
   }
 
+  if (product.slug === 'exv-player') {
+    return {
+      title: `No Account Required - ${product.name}`,
+      description: `${product.name} does not require login or an account, so there is no account to delete.`,
+    }
+  }
+
   return {
     title: `Delete Account - ${product.name}`,
     description: `Request account deletion for ${product.name}.`,
@@ -33,6 +40,59 @@ export default function DeleteAccountPage({ params }: Props) {
   
   if (!product) {
     notFound()
+  }
+
+  if (product.slug === 'exv-player') {
+    return (
+      <>
+        <section className="gradient-bg py-16 md:py-24">
+          <div className="container-custom">
+            <Breadcrumbs 
+              items={[
+                { label: 'Products', href: '/products' },
+                { label: product.name, href: `/products/${product.slug}` },
+                { label: 'No Account Required' }
+              ]} 
+            />
+
+            <div className="max-w-3xl">
+              <div className="flex items-center gap-4 mb-4">
+                <div className="w-12 h-12 bg-primary-50 dark:bg-primary-900/20 rounded-xl flex items-center justify-center">
+                  <Trash2 className="w-6 h-6 text-primary" />
+                </div>
+                <div>
+                  <p className="text-sm text-dark-500">{product.name}</p>
+                  <h1 className="text-3xl md:text-4xl font-bold text-dark-900 dark:text-white">
+                    No Account Required
+                  </h1>
+                </div>
+              </div>
+              <p className="text-dark-600 dark:text-dark-400">
+                EXV Player does not require login or account creation, so there is no account deletion request to submit.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section className="section-padding bg-white dark:bg-dark-950">
+          <div className="container-custom">
+            <div className="max-w-2xl mx-auto bg-dark-50 dark:bg-dark-900 p-8 rounded-2xl border border-dark-100 dark:border-dark-800">
+              <h2 className="text-2xl font-bold mb-4 text-dark-900 dark:text-white">What this means</h2>
+              <p className="text-dark-600 dark:text-dark-400 mb-6">
+                You can use the app immediately after installing it from Google Play. No sign-in, no account, and no deletion request are needed.
+              </p>
+              <Link 
+                href={`/products/${product.slug}`}
+                className="inline-flex items-center text-primary hover:underline"
+              >
+                <ArrowLeft className="w-4 h-4 mr-2" />
+                Back to {product.name}
+              </Link>
+            </div>
+          </div>
+        </section>
+      </>
+    )
   }
 
   return (

@@ -8,6 +8,7 @@ const footerLinks = {
     { name: 'Pulser Pro', href: '/products/pulser-pro' },
     { name: 'ZeroAds', href: '/products/zeroadsblocker' },
     { name: '1Click PDF Maker', href: '/products/oneclickpdfmaker' },
+    { name: 'EXV Player', href: '/products/exv-player' },
   ],
   company: [
     { name: 'About Us', href: '/about' },

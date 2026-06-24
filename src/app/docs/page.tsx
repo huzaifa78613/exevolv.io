@@ -22,6 +22,7 @@ const quickLinks = [
     links: [
       { name: 'ProxyConnector Pro Guide', href: '/products/proxyconnectorpro/documentation' },
       { name: 'QuizMaster AI Guide', href: '/products/quizmaster-ai/documentation' },
+      { name: 'EXV Player Guide', href: '/products/exv-player/documentation' },
     ]
   },
   {
@@ -31,6 +32,7 @@ const quickLinks = [
     links: [
       { name: 'Pulser Pro Guide', href: '/products/pulser-pro/documentation' },
       { name: 'ZeroAds Guide', href: '/products/zeroadsblocker/documentation' },
+      { name: 'EXV Player FAQs', href: '/products/exv-player/faqs' },
       { name: 'View All Products', href: '/products' },
     ]
   },
@@ -42,6 +44,7 @@ const quickLinks = [
       { name: 'General FAQs', href: '/faqs' },
       { name: 'ProxyConnector Pro FAQs', href: '/products/proxyconnectorpro/faqs' },
       { name: 'QuizMaster AI FAQs', href: '/products/quizmaster-ai/faqs' },
+      { name: 'EXV Player FAQs', href: '/products/exv-player/faqs' },
     ]
   },
   {

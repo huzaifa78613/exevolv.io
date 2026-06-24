@@ -49,6 +49,46 @@ export default function ProductPage({ params }: Props) {
     return IconComponent ? <IconComponent className="w-6 h-6" /> : <Icons.Star className="w-6 h-6" />
   }
 
+  const isExvPlayer = product.slug === 'exv-player'
+
+  const howItWorks = isExvPlayer
+    ? [
+        {
+          step: 1,
+          title: 'Install the App',
+          description: 'Download EXV Player from Google Play and install it on your Android device.'
+        },
+        {
+          step: 2,
+          title: 'Open and Play',
+          description: 'Launch the app and start playing media right away. No login or account setup is required.'
+        },
+        {
+          step: 3,
+          title: 'Use the Needed Permissions',
+          description: 'Grant only the media-related permissions needed for playback and local settings.'
+        },
+      ]
+    : [
+        {
+          step: 1,
+          title: 'Install the Extension/App',
+          description: product.category === 'android-app' 
+            ? 'Download from Google Play Store and install on your device.'
+            : 'Click the install button above to add to your browser from the store.'
+        },
+        {
+          step: 2,
+          title: 'Open and Configure',
+          description: 'Launch the app/extension and follow the initial setup wizard to configure your preferences.'
+        },
+        {
+          step: 3,
+          title: 'Start Using',
+          description: 'You\'re all set! Start using the features and enjoy the enhanced experience.'
+        },
+      ]
+
   return (
     <>
       {/* Hero Section */}
@@ -102,6 +142,14 @@ export default function ProductPage({ params }: Props) {
                 </div>
               </div>
 
+              {isExvPlayer && (
+                <div className="flex flex-wrap gap-3 mb-8">
+                  <span className="badge badge-primary">No Ads</span>
+                  <span className="badge badge-primary">No Login Required</span>
+                  <span className="badge badge-primary">Related Permissions Only</span>
+                </div>
+              )}
+
               {/* Install Buttons */}
               <div className="flex flex-wrap gap-4">
                 {product.category === 'chrome-extension' && (
@@ -111,7 +159,25 @@ export default function ProductPage({ params }: Props) {
                   </>
                 )}
                 {product.category === 'android-app' && (
-                  <PlayStoreButton appId={product.storeId} />
+                  <>
+                    <PlayStoreButton appId={product.storeId} />
+                    {isExvPlayer && (
+                      <a
+                        href="https://groups.google.com/g/goplaytest"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-3 px-6 py-3 bg-white border-2 border-dark-200 rounded-xl hover:border-primary hover:shadow-lg transition-all duration-200"
+                      >
+                        <div className="w-8 h-8 rounded-lg bg-primary-50 flex items-center justify-center text-primary">
+                          <Icons.Users className="w-4 h-4" />
+                        </div>
+                        <div className="text-left">
+                          <div className="text-xs text-dark-500 uppercase tracking-wide">Join Group</div>
+                          <div className="font-semibold text-dark-900">Beta Testing</div>
+                        </div>
+                      </a>
+                    )}
+                  </>
                 )}
               </div>
             </div>
@@ -178,25 +244,7 @@ export default function ProductPage({ params }: Props) {
 
           <div className="max-w-3xl mx-auto">
             <div className="space-y-6">
-              {[
-                {
-                  step: 1,
-                  title: 'Install the Extension/App',
-                  description: product.category === 'android-app' 
-                    ? 'Download from Google Play Store and install on your device.'
-                    : 'Click the install button above to add to your browser from the store.'
-                },
-                {
-                  step: 2,
-                  title: 'Open and Configure',
-                  description: 'Launch the app/extension and follow the initial setup wizard to configure your preferences.'
-                },
-                {
-                  step: 3,
-                  title: 'Start Using',
-                  description: 'You\'re all set! Start using the features and enjoy the enhanced experience.'
-                },
-              ].map((item) => (
+              {howItWorks.map((item) => (
                 <div key={item.step} className="flex gap-6">
                   <div className="flex-shrink-0">
                     <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white font-bold text-lg">
@@ -337,7 +385,7 @@ export default function ProductPage({ params }: Props) {
               <ChevronRight className="w-4 h-4 text-dark-400" />
             </Link>
 
-            {product.category === 'android-app' && (
+            {product.category === 'android-app' && product.slug !== 'exv-player' && (
               <Link 
                 href={`/products/${product.slug}/delete-account`}
                 className="card card-hover p-4 flex items-center gap-3 group border-red-100 dark:border-red-900/30"
@@ -371,7 +419,21 @@ export default function ProductPage({ params }: Props) {
               <ChromeInstallButton extensionId={product.storeId} className="bg-white" />
             )}
             {product.category === 'android-app' && (
-              <PlayStoreButton appId={product.storeId} />
+              <>
+                <PlayStoreButton appId={product.storeId} />
+                {isExvPlayer && (
+                  <a
+                    href="https://groups.google.com/g/goplaytest"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-3 px-6 py-3 bg-white/10 border border-white/25 rounded-xl hover:bg-white/15 transition-all duration-200"
+                  >
+                    <Icons.Users className="w-5 h-5 text-white" />
+                    <span className="font-semibold text-white">Join Beta Testing Group</span>
+                    <Icons.ExternalLink className="w-4 h-4 text-white/80" />
+                  </a>
+                )}
+              </>
             )}
           </div>
         </div>
