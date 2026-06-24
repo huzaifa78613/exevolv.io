@@ -441,6 +441,59 @@ export const products: Product[] = [
     developer: 'exevolv.io',
     privacyPolicyUrl: '/products/exv-player/privacy-policy',
     supportUrl: '/products/exv-player/documentation'
+  },
+  {
+    id: 'policy-scan-ai',
+    name: 'Policy Scan AI',
+    slug: 'policy-scan-ai',
+    tagline: 'Scan legal docs, flag risks, and understand policies fast.',
+    description: 'Policy Scan AI is an AI-powered legal assistant that helps users understand privacy policies, terms of service, and contracts. It scans documents, highlights unfair or harmful clauses, simplifies legal language, and summarizes the overall risk in a clear scan report.',
+    category: 'android-app',
+    icon: '/images/products/policy-scan/logo.png',
+    screenshots: [
+      '/images/products/policy-scan/logo.png'
+    ],
+    features: [
+      {
+        title: 'AI Document Scanner',
+        description: 'Analyze policies by taking a photo, uploading a file, or pasting raw text.',
+        icon: 'Scan'
+      },
+      {
+        title: 'Risk Categorization',
+        description: 'Findings are grouped into Red, Orange, and Yellow risk levels for quick review.',
+        icon: 'ShieldAlert'
+      },
+      {
+        title: 'Text Simplification',
+        description: 'Turns legal jargon into short, plain-language summaries anyone can understand.',
+        icon: 'MessageSquareText'
+      },
+      {
+        title: 'Laws & Rights Library',
+        description: 'Includes a built-in offline library for regional and international laws and rights.',
+        icon: 'BookOpen'
+      },
+      {
+        title: 'Final Verdict',
+        description: 'Generates a concise scan report with a headline verdict and top safety points.',
+        icon: 'ClipboardCheck'
+      },
+      {
+        title: 'Scan History',
+        description: 'Keeps a record of your previous analyses for future reference.',
+        icon: 'History'
+      }
+    ],
+    storeUrl: 'https://play.google.com/store/apps/details?id=app.dev.policyscanai',
+    storeId: 'app.dev.policyscanai',
+    rating: 5.0,
+    users: '1+',
+    version: '1.0.0',
+    lastUpdated: 'June 25, 2026',
+    developer: 'exevolv.io',
+    privacyPolicyUrl: '/products/policy-scan-ai/privacy-policy',
+    supportUrl: '/products/policy-scan-ai/documentation'
   }
 ]
 

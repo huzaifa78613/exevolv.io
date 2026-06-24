@@ -36,6 +36,7 @@ export default function PrivacyPolicyPage({ params }: Props) {
   }
 
   const isExvPlayer = product.slug === 'exv-player'
+  const isPolicyScanAI = product.slug === 'policy-scan-ai'
 
   return (
     <>
@@ -120,6 +121,58 @@ export default function PrivacyPolicyPage({ params }: Props) {
                 <ul>
                   <li>Email: <a href="mailto:privacy@exevolv.io">privacy@exevolv.io</a></li>
                 </ul>
+              </>
+            ) : isPolicyScanAI ? (
+              <>
+                <h2>Introduction</h2>
+                <p>
+                  This Privacy Policy describes how {product.name} handles information when you use the app to scan and analyze legal documents.
+                  The app is designed to help users understand policies, terms, and contracts while keeping privacy and security in mind.
+                </p>
+
+                <h2>Information We Process</h2>
+                <ul>
+                  <li><strong>Document Content:</strong> When you scan, upload, or paste a document, the text may be processed by our AI services to analyze clauses and generate summaries.</li>
+                  <li><strong>Images and Files:</strong> Photos or files you choose to scan are used only for analysis and document extraction.</li>
+                  <li><strong>Scan History:</strong> Previous scan results may be stored locally so you can revisit them later.</li>
+                </ul>
+
+                <h2>Permissions</h2>
+                <p>
+                  Policy Scan AI requires the following permissions only for core functionality:
+                </p>
+                <ul>
+                  <li><strong>Internet:</strong> Used to communicate with AI models for document analysis.</li>
+                  <li><strong>Camera:</strong> Used to scan physical documents directly through the lens.</li>
+                  <li><strong>Photos / Media / Storage:</strong> Used to pick document images or PDFs from your device.</li>
+                </ul>
+
+                <h2>How We Use Information</h2>
+                <ul>
+                  <li>To scan and analyze legal documents for potential risks and unfair clauses.</li>
+                  <li>To simplify legal language into short, readable summaries.</li>
+                  <li>To show you a final verdict and save scan history for future reference.</li>
+                </ul>
+
+                <h2>Data Retention</h2>
+                <p>
+                  Scan results and history are kept to support future review. You can clear your stored history from the app settings if that option is available in your build.
+                </p>
+
+                <h2>Security</h2>
+                <p>
+                  We use reasonable technical and organizational measures to protect the data processed by the app, but users should still avoid uploading documents they do not want analyzed.
+                </p>
+
+                <h2>Children&apos;s Privacy</h2>
+                <p>
+                  Our services are not directed to children under 13, and we do not knowingly collect information from children.
+                </p>
+
+                <h2>Contact Us</h2>
+                <p>
+                  If you have questions about this policy, contact us at <a href="mailto:privacy@exevolv.io">privacy@exevolv.io</a>.
+                </p>
               </>
             ) : (
               <>

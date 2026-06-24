@@ -50,6 +50,7 @@ export default function ProductPage({ params }: Props) {
   }
 
   const isExvPlayer = product.slug === 'exv-player'
+  const isPolicyScanAI = product.slug === 'policy-scan-ai'
 
   const howItWorks = isExvPlayer
     ? [
@@ -67,6 +68,24 @@ export default function ProductPage({ params }: Props) {
           step: 3,
           title: 'Use the Needed Permissions',
           description: 'Grant only the media-related permissions needed for playback and local settings.'
+        },
+      ]
+    : isPolicyScanAI
+    ? [
+        {
+          step: 1,
+          title: 'Install the App',
+          description: 'Download Policy Scan AI from Google Play and install it on your Android device.'
+        },
+        {
+          step: 2,
+          title: 'Scan a Document',
+          description: 'Take a photo, upload a file, or paste legal text to start the AI analysis.'
+        },
+        {
+          step: 3,
+          title: 'Review the Verdict',
+          description: 'Check the risk levels, simplified summaries, and final scan report before you agree.'
         },
       ]
     : [
@@ -150,6 +169,14 @@ export default function ProductPage({ params }: Props) {
                 </div>
               )}
 
+              {isPolicyScanAI && (
+                <div className="flex flex-wrap gap-3 mb-8">
+                  <span className="badge badge-primary">AI Document Scanner</span>
+                  <span className="badge badge-primary">Risk Categorization</span>
+                  <span className="badge badge-primary">Offline Rights Library</span>
+                </div>
+              )}
+
               {/* Install Buttons */}
               <div className="flex flex-wrap gap-4">
                 {product.category === 'chrome-extension' && (
@@ -161,7 +188,7 @@ export default function ProductPage({ params }: Props) {
                 {product.category === 'android-app' && (
                   <>
                     <PlayStoreButton appId={product.storeId} />
-                    {isExvPlayer && (
+                    {(isExvPlayer || isPolicyScanAI) && (
                       <a
                         href="https://groups.google.com/g/goplaytest"
                         target="_blank"
@@ -421,7 +448,7 @@ export default function ProductPage({ params }: Props) {
             {product.category === 'android-app' && (
               <>
                 <PlayStoreButton appId={product.storeId} />
-                {isExvPlayer && (
+                {(isExvPlayer || isPolicyScanAI) && (
                   <a
                     href="https://groups.google.com/g/goplaytest"
                     target="_blank"
