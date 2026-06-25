@@ -9,8 +9,22 @@ import { useEffect } from 'react'
 const sourceProducts = products.filter((product) => product.sourceCodeUrl)
 const developerName = 'Gulraiz Hamza'
 const developerProfile = 'https://github.com/gulraiz12ab'
+const fiverrProfile = 'https://www.fiverr.com/s/7Y2VPzE'
 
-// ========== OPTIMIZED COUNTER (Bypasses React State) ==========
+// ========== FIVERR LOGO COMPONENT ==========
+function FiverrLogo({ className }: { className?: string }) {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" className={className} fill="none" viewBox="0 0 120 36">
+      <path 
+        className="fill-dark-900 dark:fill-white transition-colors" 
+        d="M110.04 17.413h-4.247c-2.735 0-4.198 2.055-4.198 5.478v12.376h-8.056V17.413h-3.417c-2.734 0-4.198 2.055-4.198 5.478v12.376h-8.056V10.81h8.056v3.717c1.319-2.886 3.125-3.717 5.81-3.717h9.862v3.717c1.319-2.886 3.125-3.717 5.81-3.717h2.636v6.603zm-33.93 7.533H59.316c.44 2.74 2.147 4.304 5.028 4.304 2.147 0 3.66-.88 4.15-2.446l7.127 2.006c-1.757 4.255-6.102 6.848-11.277 6.848-8.739 0-12.743-6.8-12.743-12.62 0-5.722 3.515-12.57 12.254-12.57 9.276 0 12.352 6.945 12.352 12.081a25 25 0 0 1-.097 2.397M68.298 20.2c-.195-2.104-1.709-4.06-4.442-4.06-2.54 0-4.052 1.125-4.54 4.06zM37.542 35.267h7.079l8.837-24.456h-8.104l-4.296 14.233-4.395-14.234h-8.056zm-33.001 0h8.006V17.413h7.616v17.854h7.958V10.81H12.547V9.294c0-1.663 1.172-2.69 3.027-2.69h4.59V0h-5.908c-5.81 0-9.715 3.571-9.715 8.804v2.006H0v6.603h4.54z"
+      />
+      <path fill="#1DBF73" d="M115.02 36c2.75 0 4.98-2.234 4.98-4.99 0-2.755-2.23-4.99-4.98-4.99a4.984 4.984 0 0 0-4.98 4.99 4.984 4.984 0 0 0 4.98 4.99"/>
+    </svg>
+  )
+}
+
+// ========== OPTIMIZED COUNTER ==========
 function AnimatedCounter({ end, suffix = '' }: { end: number; suffix?: string }) {
   const count = useMotionValue(0)
   const rounded = useTransform(count, (latest) => Math.round(latest) + suffix)
@@ -35,13 +49,11 @@ export default function GitHubSourceCodePage() {
           <div className="absolute bottom-[-20%] left-[-10%] w-[40rem] h-[40rem] bg-cyan-400/15 rounded-full blur-[100px] mix-blend-multiply dark:mix-blend-screen animate-pulse duration-7000 delay-1000 will-change-transform" />
         </div>
 
-        {/* Grid Background */}
         <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center opacity-[0.03] dark:opacity-[0.05]" />
 
         <div className="container-custom relative z-10">
           <div className="max-w-4xl mx-auto text-center flex flex-col items-center">
             
-            {/* Badge Reveal */}
             <motion.div
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -54,7 +66,6 @@ export default function GitHubSourceCodePage() {
               </span>
             </motion.div>
 
-            {/* Staggered Heading */}
             <h1 className="text-5xl md:text-7xl font-black text-dark-900 dark:text-white tracking-tight mb-6 leading-tight">
               <motion.span
                 initial={{ opacity: 0, y: 20 }}
@@ -83,7 +94,6 @@ export default function GitHubSourceCodePage() {
               Step inside our architecture. Browse our public repositories, learn from the source code, and contribute to the modern stack.
             </motion.p>
 
-            {/* Stats Row */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -105,7 +115,6 @@ export default function GitHubSourceCodePage() {
               ))}
             </motion.div>
 
-            {/* Tech Stack Pills */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -146,12 +155,11 @@ export default function GitHubSourceCodePage() {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 className="group relative overflow-hidden rounded-[2.5rem] border border-dark-100 dark:border-dark-800/80 bg-white dark:bg-dark-900 p-8 flex flex-col h-full shadow-sm hover:shadow-[0_20px_40px_rgba(0,0,0,0.08)] hover:-translate-y-2 transition-all duration-500 ease-out will-change-transform"
               >
-                {/* Clean Numeric Watermark */}
+                {/* Numeric Watermark */}
                 <div className="absolute right-8 bottom-24 text-7xl font-black text-dark-100/40 dark:text-dark-800/40 font-mono select-none pointer-events-none group-hover:text-primary/10 group-hover:scale-110 transition-all duration-500 ease-out">
                   {String(index + 1).padStart(2, '0')}
                 </div>
 
-                {/* CSS Shimmer Line */}
                 <div className="absolute top-0 left-[-100%] w-[200%] h-1 bg-gradient-to-r from-transparent via-primary to-transparent group-hover:translate-x-[50%] transition-transform duration-1000 ease-in-out" />
 
                 <div className="flex items-center justify-between gap-4 mb-8 relative z-10">
@@ -178,26 +186,48 @@ export default function GitHubSourceCodePage() {
                 </p>
 
                 <div className="mt-auto flex flex-col gap-5 relative z-10">
-                  <div className="flex items-center justify-between p-4 rounded-3xl bg-dark-50/70 dark:bg-dark-950/70 border border-dark-100/50 dark:border-dark-800/50">
-                    <div className="flex items-center gap-4">
-                      <div className="w-12 h-12 rounded-full bg-white dark:bg-dark-900 flex items-center justify-center text-dark-500 shadow-sm border border-dark-100 dark:border-dark-800">
+                  
+                  {/* DEVELOPER INFO & FIVERR BUTTON */}
+                  <div className="flex flex-wrap items-center justify-between gap-4 p-4 rounded-3xl bg-dark-50/70 dark:bg-dark-950/70 border border-dark-100/50 dark:border-dark-800/50">
+                    <div className="flex items-center gap-3.5">
+                      <div className="w-11 h-11 rounded-full bg-white dark:bg-dark-900 flex items-center justify-center text-dark-500 shadow-sm border border-dark-100 dark:border-dark-800">
                         <UserRound className="w-5 h-5" />
                       </div>
                       <div>
-                        <p className="text-[11px] font-bold text-dark-400 dark:text-dark-500 uppercase tracking-widest mb-0.5">Author</p>
+                        <p className="text-[10px] font-bold text-dark-400 dark:text-dark-500 uppercase tracking-widest mb-0.5">Author</p>
                         <p className="text-sm font-bold text-dark-900 dark:text-white">{developerName}</p>
                       </div>
                     </div>
-                    <a
-                      href={developerProfile}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center justify-center w-12 h-12 rounded-2xl bg-white dark:bg-dark-900 text-dark-400 hover:text-white hover:bg-primary shadow-sm border border-dark-100 dark:border-dark-800 hover:border-primary transition-all duration-300"
-                    >
-                      <ArrowUpRight className="w-5 h-5" />
-                    </a>
+                    
+                    <div className="flex items-center gap-2">
+                      {/* Fiverr Button */}
+                      <a
+                        href={fiverrProfile}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group/fiverr flex items-center gap-2.5 px-3.5 py-2.5 rounded-2xl bg-white dark:bg-dark-900 border border-dark-100 dark:border-dark-800 hover:border-[#1DBF73]/40 hover:bg-[#1DBF73]/5 hover:shadow-[0_4px_12px_rgba(29,191,115,0.1)] transition-all duration-300"
+                        title="Hire me on Fiverr"
+                      >
+                        <span className="text-[10px] font-extrabold uppercase tracking-widest text-dark-400 group-hover/fiverr:text-[#1DBF73] transition-colors hidden sm:block">
+                          Hire on
+                        </span>
+                        <FiverrLogo className="h-3.5 w-auto" />
+                      </a>
+
+                      {/* GitHub Profile Button */}
+                      <a
+                        href={developerProfile}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center justify-center w-11 h-11 rounded-2xl bg-white dark:bg-dark-900 text-dark-400 hover:text-white hover:bg-primary shadow-sm border border-dark-100 dark:border-dark-800 hover:border-primary transition-all duration-300"
+                        title="View GitHub Profile"
+                      >
+                        <ArrowUpRight className="w-4 h-4" />
+                      </a>
+                    </div>
                   </div>
 
+                  {/* ACTION BUTTONS */}
                   <div className="flex flex-col sm:flex-row gap-4">
                     <a
                       href={product.sourceCodeUrl}
