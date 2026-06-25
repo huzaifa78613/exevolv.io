@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { Github, ExternalLink, Code2, UserRound, ArrowUpRight, Sparkles, GitBranch, Star, GitCommit, Zap } from 'lucide-react'
+import { Github, ExternalLink, Code2, UserRound, Sparkles, GitBranch, Star, GitCommit, Zap } from 'lucide-react'
 import { products } from '@/lib/products'
 import { motion, useMotionValue, useTransform, animate } from 'framer-motion'
 import { useEffect } from 'react'
@@ -9,7 +9,7 @@ import { useEffect } from 'react'
 const sourceProducts = products.filter((product) => product.sourceCodeUrl)
 const developerName = 'Gulraiz Hamza'
 const developerProfile = 'https://github.com/gulraiz12ab'
-const fiverrProfile = 'https://www.fiverr.com/s/7Y2VPzE'
+const fiverrProfile = 'https://www.fiverr.com/s/1q8D8Ve' // Updated Link
 
 // ========== FIVERR LOGO COMPONENT ==========
 function FiverrLogo({ className }: { className?: string }) {
@@ -156,7 +156,7 @@ export default function GitHubSourceCodePage() {
                 className="group relative overflow-hidden rounded-[2.5rem] border border-dark-100 dark:border-dark-800/80 bg-white dark:bg-dark-900 p-8 flex flex-col h-full shadow-sm hover:shadow-[0_20px_40px_rgba(0,0,0,0.08)] hover:-translate-y-2 transition-all duration-500 ease-out will-change-transform"
               >
                 {/* Numeric Watermark */}
-                <div className="absolute right-8 bottom-24 text-7xl font-black text-dark-100/40 dark:text-dark-800/40 font-mono select-none pointer-events-none group-hover:text-primary/10 group-hover:scale-110 transition-all duration-500 ease-out">
+                <div className="absolute right-8 bottom-32 text-7xl font-black text-dark-100/40 dark:text-dark-800/40 font-mono select-none pointer-events-none group-hover:text-primary/10 group-hover:scale-110 transition-all duration-500 ease-out">
                   {String(index + 1).padStart(2, '0')}
                 </div>
 
@@ -185,12 +185,13 @@ export default function GitHubSourceCodePage() {
                   {product.description}
                 </p>
 
-                <div className="mt-auto flex flex-col gap-5 relative z-10">
+                {/* ======= NEW SEPARATED BOTTOM SECTION ======= */}
+                <div className="mt-auto flex flex-col gap-4 relative z-10">
                   
-                  {/* DEVELOPER INFO & FIVERR BUTTON */}
-                  <div className="flex flex-wrap items-center justify-between gap-4 p-4 rounded-3xl bg-dark-50/70 dark:bg-dark-950/70 border border-dark-100/50 dark:border-dark-800/50">
+                  {/* 1. DEVELOPER GITHUB INFO */}
+                  <div className="flex items-center justify-between p-4 rounded-[1.25rem] bg-dark-50/70 dark:bg-dark-950/70 border border-dark-100/50 dark:border-dark-800/50 group/author hover:border-primary/30 transition-colors duration-300">
                     <div className="flex items-center gap-3.5">
-                      <div className="w-11 h-11 rounded-full bg-white dark:bg-dark-900 flex items-center justify-center text-dark-500 shadow-sm border border-dark-100 dark:border-dark-800">
+                      <div className="w-11 h-11 rounded-full bg-white dark:bg-dark-900 flex items-center justify-center text-dark-500 shadow-sm border border-dark-100 dark:border-dark-800 group-hover/author:text-primary transition-colors">
                         <UserRound className="w-5 h-5" />
                       </div>
                       <div>
@@ -199,36 +200,45 @@ export default function GitHubSourceCodePage() {
                       </div>
                     </div>
                     
-                    <div className="flex items-center gap-2">
-                      {/* Fiverr Button */}
-                      <a
-                        href={fiverrProfile}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="group/fiverr flex items-center gap-2.5 px-3.5 py-2.5 rounded-2xl bg-white dark:bg-dark-900 border border-dark-100 dark:border-dark-800 hover:border-[#1DBF73]/40 hover:bg-[#1DBF73]/5 hover:shadow-[0_4px_12px_rgba(29,191,115,0.1)] transition-all duration-300"
-                        title="Hire me on Fiverr"
-                      >
-                        <span className="text-[10px] font-extrabold uppercase tracking-widest text-dark-400 group-hover/fiverr:text-[#1DBF73] transition-colors hidden sm:block">
-                          Hire on
-                        </span>
-                        <FiverrLogo className="h-3.5 w-auto" />
-                      </a>
-
-                      {/* GitHub Profile Button */}
-                      <a
-                        href={developerProfile}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center justify-center w-11 h-11 rounded-2xl bg-white dark:bg-dark-900 text-dark-400 hover:text-white hover:bg-primary shadow-sm border border-dark-100 dark:border-dark-800 hover:border-primary transition-all duration-300"
-                        title="View GitHub Profile"
-                      >
-                        <ArrowUpRight className="w-4 h-4" />
-                      </a>
-                    </div>
+                    <a
+                      href={developerProfile}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-center w-11 h-11 rounded-xl bg-white dark:bg-dark-900 text-dark-500 hover:text-white hover:bg-dark-900 dark:hover:bg-dark-700 shadow-sm border border-dark-100 dark:border-dark-800 transition-all duration-300"
+                      title="View GitHub Profile"
+                    >
+                      <Github className="w-5 h-5" />
+                    </a>
                   </div>
 
-                  {/* ACTION BUTTONS */}
-                  <div className="flex flex-col sm:flex-row gap-4">
+                  {/* 2. DEDICATED FIVERR BANNER */}
+                  <a
+                    href={fiverrProfile}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="relative overflow-hidden flex items-center justify-between p-4 rounded-[1.25rem] bg-white dark:bg-dark-950 border border-dark-100 dark:border-dark-800 hover:border-[#1DBF73]/40 hover:shadow-[0_8px_24px_rgba(29,191,115,0.12)] transition-all duration-300 group/fiverr"
+                  >
+                    {/* Left Highlight Bar */}
+                    <div className="absolute inset-y-0 left-0 w-1 bg-[#1DBF73] opacity-80 group-hover/fiverr:opacity-100 transition-opacity" />
+                    
+                    <div className="flex items-center gap-3 pl-2">
+                      <div className="relative flex h-2.5 w-2.5">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#1DBF73] opacity-50" />
+                        <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#1DBF73]" />
+                      </div>
+                      <div>
+                        <p className="text-[10px] font-extrabold text-dark-500 uppercase tracking-widest mb-0.5">Available for work</p>
+                        <p className="text-sm font-bold text-dark-900 dark:text-white group-hover/fiverr:text-[#1DBF73] transition-colors">Hire for custom app</p>
+                      </div>
+                    </div>
+
+                    <div className="px-3 py-2.5 rounded-xl bg-dark-50 dark:bg-dark-900 border border-dark-100 dark:border-dark-800 shadow-sm">
+                      <FiverrLogo className="h-3.5 w-auto" />
+                    </div>
+                  </a>
+
+                  {/* 3. ACTION BUTTONS */}
+                  <div className="flex flex-col sm:flex-row gap-4 pt-1">
                     <a
                       href={product.sourceCodeUrl}
                       target="_blank"
@@ -247,6 +257,7 @@ export default function GitHubSourceCodePage() {
                       <ExternalLink className="w-5 h-5 text-dark-400 group-hover/link:text-dark-900 dark:group-hover/link:text-white transition-colors" />
                     </Link>
                   </div>
+
                 </div>
               </motion.div>
             ))}
