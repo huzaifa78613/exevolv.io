@@ -590,7 +590,7 @@ export default function GitHubSourceCodePage() {
                   <motion.div
                     className="group relative overflow-hidden rounded-[2.5rem] border border-dark-100/80 dark:border-dark-800/80 bg-white dark:bg-dark-900 p-8 flex flex-col h-full shadow-lg"
                     whileHover={{
-                      shadow: '0 25px 60px rgba(0,0,0,0.15)',
+                      boxShadow: '0 25px 60px rgba(0,0,0,0.15)',
                       borderColor: 'rgba(var(--color-primary-rgb), 0.4)',
                     }}
                   >
