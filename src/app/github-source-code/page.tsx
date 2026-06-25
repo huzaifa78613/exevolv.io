@@ -15,76 +15,83 @@ const developerProfile = 'https://github.com/gulraiz12ab'
 export default function GitHubSourceCodePage() {
   return (
     <>
-      {/* HERO SECTION */}
-      <section className="relative gradient-bg py-16 md:py-24 overflow-hidden">
+      {/* PREMIUM HERO SECTION */}
+      <section className="relative bg-white dark:bg-dark-950 py-20 md:py-32 overflow-hidden border-b border-dark-100 dark:border-dark-900">
+        {/* Cinematic Ambient Glows */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute -top-32 -right-24 w-80 h-80 bg-primary/10 rounded-full blur-3xl" />
-          <div className="absolute bottom-0 left-0 w-72 h-72 bg-primary/5 rounded-full blur-3xl" />
+          <div className="absolute -top-40 -right-40 w-[30rem] h-[30rem] bg-primary/10 rounded-full blur-[120px] opacity-70" />
+          <div className="absolute bottom-0 left-10 w-[25rem] h-[25rem] bg-primary/5 rounded-full blur-[100px] opacity-60" />
         </div>
 
-        <div className="container-custom relative">
+        <div className="container-custom relative z-10">
           <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/80 dark:bg-dark-900/80 backdrop-blur-sm border border-dark-100 dark:border-dark-800 mb-8 shadow-lg shadow-dark-900/5">
-              <Sparkles className="w-4 h-4 text-primary" />
-              <span className="text-sm font-medium text-dark-600 dark:text-dark-300">Source code hub</span>
+            {/* Glassmorphic Badge */}
+            <div className="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-white/60 dark:bg-dark-900/40 backdrop-blur-md border border-dark-200/50 dark:border-dark-700/50 mb-10 shadow-[0_8px_16px_-6px_rgba(0,0,0,0.05)]">
+              <Sparkles className="w-4 h-4 text-primary animate-pulse" />
+              <span className="text-sm font-semibold text-dark-700 dark:text-dark-300 tracking-wide">
+                Premium Source Code Hub
+              </span>
             </div>
 
-            <div className="flex items-center gap-4 mb-6">
-              <div className="w-14 h-14 bg-primary-50 dark:bg-primary-900/20 rounded-2xl flex items-center justify-center ring-8 ring-primary/5">
-                <Github className="w-7 h-7 text-primary" />
+            <div className="flex items-center gap-5 mb-8">
+              <div className="w-16 h-16 bg-gradient-to-br from-primary-50 to-white dark:from-primary-900/20 dark:to-dark-900 rounded-2xl flex items-center justify-center border border-primary/10 shadow-inner">
+                <Github className="w-8 h-8 text-primary" />
               </div>
               <div>
-                <h1 className="text-4xl md:text-5xl font-bold text-dark-900 dark:text-white tracking-tight">
+                <h1 className="text-4xl md:text-6xl font-extrabold text-dark-900 dark:text-white tracking-tight">
                   Source Code
                 </h1>
               </div>
             </div>
 
-            <p className="text-dark-600 dark:text-dark-400 text-lg md:text-xl leading-relaxed max-w-2xl">
-              Browse the public source code repositories for the products that have GitHub links available. Explore, learn, and contribute.
+            <p className="text-dark-600 dark:text-dark-400 text-lg md:text-xl leading-relaxed max-w-2xl font-medium">
+              Explore the core architecture. Browse our public repositories, discover the code powering our products, and contribute to the ecosystem.
             </p>
           </div>
         </div>
       </section>
 
-      {/* REPOSITORIES SECTION */}
-      <section className="section-padding bg-white dark:bg-dark-950">
+      {/* REPOSITORIES GRID SECTION */}
+      <section className="relative py-20 bg-dark-50/50 dark:bg-dark-950/50">
         <div className="container-custom">
-          <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
+          <div className="grid md:grid-cols-2 gap-8 lg:gap-10">
             {sourceProducts.map((product) => (
               <div
                 key={product.id}
-                className="group relative overflow-hidden rounded-3xl border border-dark-100 dark:border-dark-800 bg-white dark:bg-dark-900 p-6 sm:p-8 shadow-sm hover:shadow-xl hover:shadow-primary/5 transition-all duration-300 flex flex-col h-full"
+                className="group relative overflow-hidden rounded-[2rem] border border-dark-100/80 dark:border-dark-800/80 bg-white/80 dark:bg-dark-900/80 backdrop-blur-xl p-8 shadow-lg shadow-dark-900/5 hover:shadow-2xl hover:shadow-primary/10 hover:-translate-y-1.5 transition-all duration-500 ease-out flex flex-col h-full"
               >
-                <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-primary via-primary-500 to-primary-700 opacity-70 group-hover:opacity-100 transition-opacity" />
+                {/* Premium Gradient Top Line */}
+                <div className="absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r from-transparent via-primary to-transparent opacity-40 group-hover:opacity-100 transition-opacity duration-500" />
 
-                <div className="flex items-center justify-between gap-4 mb-6">
-                  <div className="flex items-center gap-2 text-primary">
-                    <Code2 className="w-5 h-5" />
-                    <span className="text-xs font-bold uppercase tracking-[0.2em]">Repository</span>
+                <div className="flex items-center justify-between gap-4 mb-8">
+                  <div className="flex items-center gap-2.5 text-primary">
+                    <div className="p-2 rounded-lg bg-primary/10">
+                      <Code2 className="w-5 h-5" />
+                    </div>
+                    <span className="text-xs font-bold uppercase tracking-widest">Repository</span>
                   </div>
-                  <span className="text-xs font-semibold px-3 py-1.5 rounded-full bg-primary-50 dark:bg-primary-900/20 text-primary border border-primary/10">
-                    Public
+                  <span className="text-[11px] font-bold px-4 py-1.5 rounded-full bg-dark-100 dark:bg-dark-800 text-dark-600 dark:text-dark-300 border border-dark-200 dark:border-dark-700">
+                    PUBLIC
                   </span>
                 </div>
 
-                <h2 className="text-2xl font-bold text-dark-900 dark:text-white mb-3 group-hover:text-primary transition-colors">
+                <h2 className="text-2xl lg:text-3xl font-bold text-dark-900 dark:text-white mb-4 group-hover:text-primary transition-colors duration-300">
                   {product.name}
                 </h2>
 
-                <p className="text-sm text-dark-600 dark:text-dark-400 mb-8 leading-relaxed flex-grow">
+                <p className="text-base text-dark-600 dark:text-dark-400 mb-10 leading-relaxed flex-grow">
                   {product.description}
                 </p>
 
-                <div className="mt-auto space-y-4">
-                  {/* Developer Info Box */}
-                  <div className="flex items-center justify-between p-4 rounded-2xl bg-dark-50 dark:bg-dark-950/50 border border-dark-100 dark:border-dark-800">
-                    <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-full bg-dark-200 dark:bg-dark-800 flex items-center justify-center text-dark-700 dark:text-dark-300">
-                        <UserRound className="w-5 h-5" />
+                <div className="mt-auto flex flex-col gap-5">
+                  {/* Sleek Developer Info Card */}
+                  <div className="flex items-center justify-between p-4 rounded-2xl bg-white dark:bg-dark-950 border border-dark-100 dark:border-dark-800/60 shadow-sm">
+                    <div className="flex items-center gap-3.5">
+                      <div className="w-10 h-10 rounded-full bg-dark-50 dark:bg-dark-900 flex items-center justify-center text-dark-500 border border-dark-100 dark:border-dark-800">
+                        <UserRound className="w-4 h-4" />
                       </div>
                       <div>
-                        <p className="text-[11px] font-semibold text-dark-500 uppercase tracking-wider mb-0.5">Developer</p>
+                        <p className="text-[10px] font-bold text-dark-400 dark:text-dark-500 uppercase tracking-widest mb-0.5">Author</p>
                         <p className="text-sm font-bold text-dark-900 dark:text-white">{developerName}</p>
                       </div>
                     </div>
@@ -92,30 +99,30 @@ export default function GitHubSourceCodePage() {
                       href={developerProfile}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="p-2 rounded-xl text-dark-500 hover:text-primary hover:bg-primary-50 dark:hover:bg-primary-900/20 transition-colors"
+                      className="group/link flex items-center justify-center w-10 h-10 rounded-xl text-dark-400 hover:text-primary hover:bg-primary/10 transition-all duration-300"
                       title="View Developer Profile"
                     >
-                      <ArrowUpRight className="w-5 h-5" />
+                      <ArrowUpRight className="w-5 h-5 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform" />
                     </a>
                   </div>
 
-                  {/* Clean Action Buttons */}
-                  <div className="flex flex-col sm:flex-row gap-3 pt-2">
+                  {/* Premium Action Buttons */}
+                  <div className="flex flex-col sm:flex-row gap-3.5">
                     <a
                       href={product.sourceCodeUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex-1 inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-dark-900 dark:bg-white text-white dark:text-dark-900 font-medium hover:bg-dark-800 dark:hover:bg-dark-100 transition-colors shadow-sm"
+                      className="group/btn flex-1 flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl bg-dark-900 dark:bg-white text-white dark:text-dark-900 font-semibold hover:bg-dark-800 dark:hover:bg-dark-100 transition-all duration-300 shadow-[0_4px_12px_rgba(0,0,0,0.1)] hover:shadow-[0_6px_16px_rgba(0,0,0,0.15)] hover:-translate-y-0.5"
                     >
                       <Github className="w-4 h-4" />
                       View on GitHub
                     </a>
                     <Link
                       href={`/products/${product.slug}`}
-                      className="flex-1 inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-dark-50 dark:bg-dark-800 text-dark-900 dark:text-white font-medium hover:bg-dark-100 dark:hover:bg-dark-700 border border-dark-200 dark:border-dark-700 transition-colors"
+                      className="group/link flex-1 flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl bg-white dark:bg-dark-900 text-dark-900 dark:text-white font-semibold hover:bg-dark-50 dark:hover:bg-dark-800 border border-dark-200 dark:border-dark-700 transition-all duration-300 hover:-translate-y-0.5"
                     >
                       Product Details
-                      <ExternalLink className="w-4 h-4 text-dark-500 dark:text-dark-400" />
+                      <ExternalLink className="w-4 h-4 text-dark-400 group-hover/link:translate-x-0.5 transition-transform" />
                     </Link>
                   </div>
                 </div>
@@ -123,12 +130,16 @@ export default function GitHubSourceCodePage() {
             ))}
           </div>
 
-          {/* Empty State */}
+          {/* Premium Empty State */}
           {sourceProducts.length === 0 && (
-            <div className="text-center py-24 bg-dark-50 dark:bg-dark-900/50 rounded-3xl border border-dark-100 dark:border-dark-800 mt-8">
-              <Github className="w-12 h-12 text-dark-300 dark:text-dark-600 mx-auto mb-4" />
-              <h3 className="text-lg font-semibold text-dark-900 dark:text-white mb-2">No Repositories Found</h3>
-              <p className="text-dark-600 dark:text-dark-400">Public source code repositories will appear here once available.</p>
+            <div className="text-center py-28 px-4 bg-white/50 dark:bg-dark-900/30 backdrop-blur-md rounded-[3rem] border border-dark-100 border-dashed dark:border-dark-800 mt-10">
+              <div className="w-20 h-20 bg-dark-50 dark:bg-dark-800 rounded-full flex items-center justify-center mx-auto mb-6 shadow-inner">
+                <Github className="w-10 h-10 text-dark-400 dark:text-dark-500" />
+              </div>
+              <h3 className="text-2xl font-bold text-dark-900 dark:text-white mb-3 tracking-tight">No Repositories Available</h3>
+              <p className="text-dark-500 dark:text-dark-400 max-w-md mx-auto text-lg">
+                Public source code repositories will appear here once they are released. Check back later.
+              </p>
             </div>
           )}
         </div>
