@@ -19,7 +19,6 @@ const navigation = [
     ]
   },
   { name: 'About', href: '/about' },
-  { name: 'Blog', href: '/blog' },
   { name: 'Docs', href: '/docs' },
   { name: 'FAQs', href: '/faqs' },
   { name: 'Contact', href: '/contact' },
