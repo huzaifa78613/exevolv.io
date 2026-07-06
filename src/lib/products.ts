@@ -21,6 +21,7 @@ export interface Product {
   developer: string
   privacyPolicyUrl: string
   supportUrl: string
+  fiverrUrl?: string
 }
 
 export const products: Product[] = [
@@ -127,7 +128,8 @@ export const products: Product[] = [
     lastUpdated: 'June 6, 2026',
     developer: 'exevolv.io',
     privacyPolicyUrl: '/products/uc-max/privacy-policy',
-    supportUrl: '/contact'
+    supportUrl: '/contact',
+    fiverrUrl: 'https://www.fiverr.com/s/Keroy22'
   },
   {
     id: 'quizmaster-ai',
@@ -182,7 +184,8 @@ export const products: Product[] = [
     lastUpdated: 'February 3, 2026',
     developer: 'exevolv.io',
     privacyPolicyUrl: '/products/quizmaster-ai/privacy-policy',
-    supportUrl: '/products/quizmaster-ai/documentation'
+    supportUrl: '/products/quizmaster-ai/documentation',
+    fiverrUrl: 'https://www.fiverr.com/s/Keroy22'
   },
   {
     id: 'pulser-pro',
@@ -336,7 +339,8 @@ export const products: Product[] = [
     lastUpdated: 'May 09, 2026',
     developer: 'exevolv.io',
     privacyPolicyUrl: '/products/quizmaster-ai-android/privacy-policy',
-    supportUrl: '/products/quizmaster-ai-android/documentation'
+    supportUrl: '/products/quizmaster-ai-android/documentation',
+    fiverrUrl: 'https://www.fiverr.com/s/Keroy22'
   },
   {
     id: 'oneclickpdfmaker',
@@ -392,7 +396,8 @@ export const products: Product[] = [
     lastUpdated: 'June 15, 2026',
     developer: 'exevolv.io',
     privacyPolicyUrl: '/products/oneclickpdfmaker/privacy-policy',
-    supportUrl: '/products/oneclickpdfmaker/documentation'
+    supportUrl: '/products/oneclickpdfmaker/documentation',
+    fiverrUrl: 'https://www.fiverr.com/s/Keroy22'
   }
 ]
 
